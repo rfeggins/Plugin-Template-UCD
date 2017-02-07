@@ -1,4 +1,4 @@
-# IBM UrbanCode Deploy Plug-in Template
+# IBM UrbanCode Deploy Plug-in Template modified for BPM Plugin
 ---
 
 The UrbanCode Deploy Plug-in Template project is a sample project that can be forked and used as a base for community plug-ins.
