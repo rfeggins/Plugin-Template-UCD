@@ -1,0 +1,40 @@
+
+
+Setup prerequisite tools for plugin development.
+
+Make a community plug-in in under 10 minutes by using the automation plug-in template that’s provided on GitHub.
+Before you begin
+You need a few tools to get started with the example project. If these tools are not installed, see the Build Requirements documentation page for more details.
+1. Java developer kit (Java SDK)
+2. Git
+3. Gradle
+While this example contains a plug-in that’s written in Groovy and built with Gradle, plug-ins can be implemented in any language. See IBM® Knowledge Center for details.
+Create a fork of the template
+The IBM UrbanCode™ GitHub organization contains a template project to provide you with a base for contributing a new community plug-in. If you prefer not to use the command line, you can use GitHub Desktop instead.
+1. Go to the UrbanCode Deploy plug-in template in the IBM UrbanCode organization on GitHub.
+2. In the upper right, click Fork to create a personal Plugin-Template-UCD repository under your user name.
+3. Open a console window, go to a suitable directory, and clone the repository by using the command:
+git clone https://github.com/<username>/Plugin-Template-UCD.git
+The actual URL is located under the Clone or Download button in GitHub.
+Edit and build
+Now that you have the base project, modify it into your own plug-in.
+1. Go to your new repository directory:
+cd Plugin-Template-UCD
+2. Optional: Make your plug-in unique by modifying the files in the /src/main directory.
+* The groovy folder contains the helloworld.groovy file. Update this file to make the ‘Hello World’ plugin step unique. Its default behavior will print “Hello World!” to the output log.
+* The util folder holds general utility code for a plugin and is not related to it’s specific steps. The ‘i18n-scraper.groovy’ file is used for translations and should remain untouched.
+* The zip folder houses xml files that define the structure of a plugin. The info.xml should contain all version release notes and the upgrade.xml is used to upgrade plugin steps cleanly without losing configuration settings. The plugin.xml defines the steps, step properties, and run time step scripts. This is the most important file of any plugin. View our plugin.xml documentation for additional information.
+* If you wish to develop in a language other than Groovy, a new folder will need to be added in the /src/main directory and the build.gradle file will need to be updated to accommodate the new language. The Gradle User Guide documents where to make the appropriate updates.
+Note: To build correctly with Gradle, the plugin.xml file must retain the line version="@API_VERSION@" and the info.xml file must retain the line <release-version>@RELEASE_VERSION@</release-version>.
+3. Go back to the root directory and open the gradle.properties file:
+* Change pluginName=helloworld to pluginName=name, where name is the name of your new community plug-in.
+* Change apiVersion=2 to apiVersion=1 because this plug-in is a brand new community plug-in.
+* You do not need to modify the pluginVersion=dev line in the file.
+4. To build the plug-in, run the following command in the base directory of the project:
+gradle
+5. The installable plug-in distributable file is called name-1.dev.zip and is found in the user_dir/Plugin-Template-UCD/build/distributions folder.
+After you build
+* Install the name-1.dev.zip plugin into UrbanCode Deploy and run the ‘Hello World’ step in a component process.
+* Commit your changes.
+* Make unique updates to the template plugin such as: updating the ‘helloworld.groovy’ file or create a new step!
+
