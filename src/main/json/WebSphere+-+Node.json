@@ -1,0 +1,349 @@
+{
+    "name": "WebSphere - Node",
+    "description": "",
+    "created": 1478019857684,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "envPropDefs": [],
+    "resPropDefs": [],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "custom",
+            "properties": [
+                {
+                    "name": "ProfileTemplatePath",
+                    "value": "${p:environment\/WASInstallPath}\/profileTemplates\/managed",
+                    "description": "Path to the template for the profile to create",
+                    "secure": false
+                },
+                {
+                    "name": "WASDmgrHostname",
+                    "value": "${p:agent\/Hostname}",
+                    "description": "Hostname of the deployment manager",
+                    "secure": false
+                },
+                {
+                    "name": "WASDmgrPort",
+                    "value": "8879",
+                    "description": "Port of the deployment manager",
+                    "secure": false
+                },
+                {
+                    "name": "WASProfileName",
+                    "value": "Node01",
+                    "description": "Name of the new profile to create",
+                    "secure": false
+                },
+                {
+                    "name": "WASProfilePath",
+                    "value": "${p:environment\/WASInstallPath}\/profiles\/Node01",
+                    "description": "Directory to place the new profile in",
+                    "secure": false
+                }
+            ]
+        },
+        {
+            "name": "template",
+            "properties": []
+        }
+    ]},
+    "processes": [
+        {
+            "name": "Install",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Installed",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/c575abf0-5e4a-41c8-87b3-4eb504d2f6d7\/processes\/25b738e3-4d6c-4410-ab5a-e6d8318cdfe3",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "e54158cba9bcecfdcad6c13f4fbe9f",
+                        "from": "Create Node Profile",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Create Node Profile",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "e54158cba9bcecfdcad6c13f4fbe9f",
+                        "x": -5,
+                        "y": 460,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Create Node Profile",
+                        "x": -65,
+                        "y": 200,
+                        "h": 60,
+                        "w": 210
+                    }
+                ],
+                "type": "graph",
+                "name": "95cba5e7-66a2-43b8-be21-c61c8b2456e0",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "e54158cba9bcecfdcad6c13f4fbe9f",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Create Node Profile",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WASInstallPath}",
+                            "WASProfilePath": "${p:component\/WASProfilePath}",
+                            "WASProfileName": "${p:component\/WASProfileName}",
+                            "ProfileTemplatePath": "${p:component\/ProfileTemplatePath}",
+                            "WASAdminUsername": "${p:environment\/WASAdminUsername}",
+                            "WASAdminPassword": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|TOLlmocU6Y0zVj5qLm+NpA==|\/u1a15v2szncVXXtIir6O77x3jeT7gGlHxOxwvhsYJ+Pmv+X0Ore1tGBp884k1PB}",
+                            "WASCellName": "${p?:environment\/WASCellName}",
+                            "WASNodeName": "${p?:environment\/WASNodeName}",
+                            "WASHostName": "${p?:environment\/WASHostName}",
+                            "WASPortsFile": "${p?:environment\/WASPortsFile}"
+                        },
+                        "type": "plugin",
+                        "name": "Create Node Profile",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Start",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/c575abf0-5e4a-41c8-87b3-4eb504d2f6d7\/processes\/eb3e796e-f6b5-4b4b-af0f-d4843245a23a",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "86e000c67a13a3ef2c8ceb6f187e31",
+                        "from": "Start and Register Node",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Start and Register Node",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "86e000c67a13a3ef2c8ceb6f187e31",
+                        "x": -5,
+                        "y": 210,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Start and Register Node",
+                        "x": -80,
+                        "y": 97,
+                        "h": 60,
+                        "w": 240
+                    }
+                ],
+                "type": "graph",
+                "name": "7fc841ad-f8e7-4df8-92e6-961961905310",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "86e000c67a13a3ef2c8ceb6f187e31",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Start and Register Node",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASAdminUsername": "${p:environment\/WASAdminUsername}",
+                            "WASAdminPassword": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|LyMq9dqYucc3D\/hbWtzZcg==|AoJ6W2RJ8RFPd\/tkaK2bg8UqFHfzkHqFkgXjqcdOUiTEI8AmYt04xUF7taxbx4zA}",
+                            "WASProfilePath": "${p:environment\/WASInstallPath}\/profiles\/Node01",
+                            "WASDmgrHostname": "${p:WASDmgrHostname}",
+                            "WASDmgrPort": "${p:WASDmgrPort}"
+                        },
+                        "type": "plugin",
+                        "name": "Start and Register Node",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Stop",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "REMOVE",
+            "status": "Active",
+            "active": true,
+            "path": "components\/c575abf0-5e4a-41c8-87b3-4eb504d2f6d7\/processes\/d6250a18-bbf7-4a0e-b01d-64923677742f",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "ed7070788b73dca51bb5589d067b34",
+                        "from": "Stop Node",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Stop Node",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "ed7070788b73dca51bb5589d067b34",
+                        "x": -5,
+                        "y": 210,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Stop Node",
+                        "x": -40,
+                        "y": 88,
+                        "h": 60,
+                        "w": 160
+                    }
+                ],
+                "type": "graph",
+                "name": "4072c460-c208-44e1-b926-aa88310e6602",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "ed7070788b73dca51bb5589d067b34",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Stop Node",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WASInstallPath}",
+                            "WASAdminUsername": "${p:environment\/WASAdminUsername}",
+                            "WASAdminPassword": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|OwpnTNjqxB8nx6BrMA+soA==|9L2BHtjktsQYpyqNv39iNFyg8WH1Q5jv4VO5ZL5D3NOnXjqZSCf0R0Iq2ypjYIE8}",
+                            "WASProfileName": "Node01"
+                        },
+                        "type": "plugin",
+                        "name": "Stop Node",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Uninstall",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "REMOVE",
+            "status": "Installed",
+            "active": true,
+            "path": "components\/c575abf0-5e4a-41c8-87b3-4eb504d2f6d7\/processes\/000811b9-a36b-4327-aa91-df253c41f07c",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "a0ef30e2a931a9bca3dfdae15a81da",
+                        "from": "Remove Node Profile",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Remove Node Profile",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "a0ef30e2a931a9bca3dfdae15a81da",
+                        "x": -5,
+                        "y": 210,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Remove Node Profile",
+                        "x": -70,
+                        "y": 100,
+                        "h": 60,
+                        "w": 220
+                    }
+                ],
+                "type": "graph",
+                "name": "1a807f3b-561b-410b-a820-46cd82983631",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "a0ef30e2a931a9bca3dfdae15a81da",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Remove Node Profile",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WASInstallPath}",
+                            "WASProfilePath": "${p:environment\/WASInstallPath}\/profiles\/Node01",
+                            "WASProfileName": "Node01",
+                            "deleteProfileDir": "true"
+                        },
+                        "type": "plugin",
+                        "name": "Remove Node Profile",
+                        "children": []
+                    }
+                ]
+            }
+        }
+    ],
+    "configTemplates": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}

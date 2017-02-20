@@ -1,0 +1,515 @@
+{
+    "name": "BPM 857 Install or Uninstall",
+    "description": "C:\\IBM\\Software\\BPM_Adv_Windows",
+    "created": 1476893773602,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "sourceConfigPluginName": "File System (Versioned)",
+    "envPropDefs": [],
+    "resPropDefs": [
+        {
+            "name": "IMCL_Location",
+            "label": "IMCL_Location",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "\"C:\\IBM\\Installation Manager\\eclipse\\tools\\imcl.exe\"",
+            "required": false,
+            "description": "IBM Installation Manager Command Line Interface Location"
+        },
+        {
+            "name": "IMCL_Directory",
+            "label": "IMCL_Directory",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "\"C:\\IBM\\Installation Manager\\eclipse\\tools\"",
+            "required": false,
+            "description": "Installation Manager CLI directory"
+        },
+        {
+            "name": "BPM_Install_Dir",
+            "label": "BPM_Install_Dir",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "\"C:\\ibm\\WebSphere\\AppServer\"",
+            "required": false,
+            "description": "BPM Install Direcotry"
+        },
+        {
+            "name": "BPM_Uninstall_Parent_Dir",
+            "label": "BPM_Uninstall_Parent_Dir",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "\"C:\\ibm\"",
+            "required": false,
+            "description": ""
+        }
+    ],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "template",
+            "properties": []
+        },
+        {
+            "name": "custom",
+            "properties": [{
+                "name": "response_file_location",
+                "value": "install_bpm.xml",
+                "description": "",
+                "secure": false
+            }]
+        },
+        {
+            "name": "FileSystemVersionedComponentProperties",
+            "properties": [
+                {
+                    "name": "basePath",
+                    "value": "C:\\IBM\\Software\\response_files",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "extensions",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "saveFileExecuteBits",
+                    "value": "false",
+                    "description": "",
+                    "secure": false
+                }
+            ]
+        }
+    ]},
+    "processes": [
+        {
+            "name": "Install",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/e17989e7-8936-4290-81fb-3d15e1e93adb\/processes\/076cf9ca-e937-40f6-bf0a-81897a5ca85a",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Check Available Disk Space",
+                        "from": "Cleanup Working Directory",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Display Properties",
+                        "from": "Download Artifacts",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "from": "Not Enough Diskspace",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "from": "Execute Response File",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Download Artifacts",
+                        "from": "Check Available Disk Space",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Execute Response File",
+                        "from": "Display Properties",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Not Enough Diskspace",
+                        "from": "Check Available Disk Space",
+                        "type": "FAILURE",
+                        "value": ""
+                    },
+                    {
+                        "to": "Cleanup Working Directory",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Not Enough Diskspace",
+                        "x": -229,
+                        "y": 330,
+                        "h": 60,
+                        "w": 200
+                    },
+                    {
+                        "name": "Cleanup Working Directory",
+                        "x": -70,
+                        "y": 80,
+                        "h": 60,
+                        "w": 220
+                    },
+                    {
+                        "name": "Execute Response File",
+                        "x": 181,
+                        "y": 470,
+                        "h": 60,
+                        "w": 230
+                    },
+                    {
+                        "name": "Display Properties",
+                        "x": 211,
+                        "y": 370,
+                        "h": 60,
+                        "w": 170
+                    },
+                    {
+                        "name": "Check Available Disk Space",
+                        "x": -90,
+                        "y": 161,
+                        "h": 60,
+                        "w": 260
+                    },
+                    {
+                        "name": "Download Artifacts",
+                        "x": 181,
+                        "y": 270,
+                        "h": 60,
+                        "w": 220
+                    },
+                    {
+                        "name": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "x": -29,
+                        "y": 555,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "31572727-33e1-4493-b2ad-b59aed0d84d5",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Download Artifacts",
+                        "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+                        "pluginVersion": 26,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "artifactSetBaseDir": "",
+                            "fileIncludePatterns": "**\/*",
+                            "fileExcludePatterns": "",
+                            "syncMode": "true",
+                            "fullVerification": "true",
+                            "setFileExecuteBits": "false",
+                            "verifyFileIntegrity": "false",
+                            "versionId": "${p:version.id}",
+                            "serverUrl": "${p:server.url}",
+                            "compId": "${p:component.id}",
+                            "resId": "${p:resource.id}",
+                            "charset": "",
+                            "label": ""
+                        },
+                        "type": "plugin",
+                        "name": "Download Artifacts",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Execute Response File",
+                        "pluginName": "IBM Installation Manager",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "responseFile": "${p:component\/response_file_location}",
+                            "dataLocation": "",
+                            "imclLocation": "c:\\IBM\\Installation Manager\\eclipse\\tools\\imcl.exe",
+                            "responseFileVariables": "",
+                            "secureStorageFile": "",
+                            "masterPasswordFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Execute Response File",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "dir\necho \"${p:resource\/work.dir}\/${p:component.name}\"\necho \"${p:component\/custom\/response_file_location}\"\necho '${p:resource\/BPM 857 Install or Uninstall\/IMCL_Location}",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Display Properties",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Cleaning up Working Directory\"\ndir\ndel \/S \/Q *.*",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Cleanup Working Directory",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Check Available Disk Space",
+                        "pluginName": "System Information",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "path": "C:\\",
+                            "size": "3000000"
+                        },
+                        "type": "plugin",
+                        "name": "Check Available Disk Space",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Not Enough Diskspace\"",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Not Enough Diskspace",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Uninstall BPM",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/e17989e7-8936-4290-81fb-3d15e1e93adb\/processes\/c3e33099-cfda-4d75-b9b1-3f66001522e9",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Display Property Values",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "from": "Remove Any Leftover Directories from Uninstall",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Remove Any Leftover Directories from Uninstall",
+                        "from": "Check uninstall complete",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Uninstall BPM",
+                        "from": "Display Property Values",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Check uninstall complete",
+                        "from": "Uninstall BPM",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "from": "Check uninstall complete",
+                        "type": "FAILURE",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Uninstall BPM",
+                        "x": -9,
+                        "y": 160,
+                        "h": 60,
+                        "w": 150
+                    },
+                    {
+                        "name": "Check uninstall complete",
+                        "x": -49,
+                        "y": 270,
+                        "h": 60,
+                        "w": 210
+                    },
+                    {
+                        "name": "Display Property Values",
+                        "x": -100,
+                        "y": 70,
+                        "h": 60,
+                        "w": 200
+                    },
+                    {
+                        "name": "Remove Any Leftover Directories from Uninstall",
+                        "x": 233,
+                        "y": 393,
+                        "h": 60,
+                        "w": 330
+                    },
+                    {
+                        "name": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "x": -90,
+                        "y": 500,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "c8b41bc1-7a1c-4690-add2-ca047aa3b5ec",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Current Directory'\ncd ${p:resource\/BPM 857 Install or Uninstall\/IMCL_Directory}\nDir\necho \"Uninstalling BPM Products\"\nimcl uninstall com.ibm.websphere.ND.v85 com.ibm.websphere.IBMJAVA.v70 com.ibm.bpm.ADV.v85 com.ibm.ws.DB2EXP.winia64  -installationDirectory ${p:resource\/BPM 857 Install or Uninstall\/BPM_Install_Dir} -log C:\\temp\\uninstall.log",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Uninstall BPM",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "cd ${p:resource\/BPM 857 Install or Uninstall\/BPM_Uninstall_Parent_Dir}\ndir WebSphere",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Check uninstall complete",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Property Values\"\necho ${p:resource\/BPM 857 Install or Uninstall\/BPM_Install_Dir}",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Display Property Values",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "cd ${p:resource\/BPM 857 Install or Uninstall\/BPM_Uninstall_Parent_Dir}\nrmdir \/S \/Q WebSphere",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Remove Any Leftover Directories from Uninstall",
+                        "children": []
+                    }
+                ]
+            }
+        }
+    ],
+    "configTemplates": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}

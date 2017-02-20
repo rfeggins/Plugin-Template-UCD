@@ -1,0 +1,479 @@
+{
+    "name": "IM-Comp",
+    "description": "Install or upgrade IBM Installation Manager (IIM) ",
+    "created": 1466023356283,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": -1,
+    "cleanupCountToKeep": 2,
+    "sourceConfigPluginName": "File System (Versioned)",
+    "envPropDefs": [{
+        "name": "InstallationManagerHome",
+        "label": "IBM Installation Manager Home",
+        "pattern": "",
+        "type": "TEXT",
+        "value": "\/opt\/IBM\/InstallationManager",
+        "required": false,
+        "description": "IBM Installation Manager Home",
+        "placeholder": ""
+    }],
+    "resPropDefs": [],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "template",
+            "properties": []
+        },
+        {
+            "name": "FileSystemVersionedComponentProperties",
+            "properties": [
+                {
+                    "name": "basePath",
+                    "value": "\/home\/ibmdemo\/ucd_repo",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "extensions",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "saveFileExecuteBits",
+                    "value": "false",
+                    "description": "",
+                    "secure": false
+                }
+            ]
+        },
+        {
+            "name": "custom",
+            "properties": [
+                {
+                    "name": "IM.Data.Path",
+                    "value": "\/var\/ibm\/InstallationManager",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "IM.Work.Dir",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "im_tools_dir",
+                    "value": "\/opt\/IBM\/InstallationManager\/eclipse\/tools",
+                    "description": "",
+                    "secure": false
+                }
+            ]
+        }
+    ]},
+    "processes": [
+        {
+            "name": "Check IM Version",
+            "description": "Run Operation - No Version Needed",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": false,
+            "status": "",
+            "active": true,
+            "path": "components\/ff75a776-2182-442e-aa76-47b71f99d59d\/processes\/79cb5a53-314a-4c38-8df0-ffe65d149342",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "03dac45d594d1e8f2df98897b0b223",
+                        "from": "Check IM Version",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Check IM Version",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "03dac45d594d1e8f2df98897b0b223",
+                        "from": "Does imcl command exists",
+                        "type": "FAILURE",
+                        "value": ""
+                    },
+                    {
+                        "to": "Does imcl command exists",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Check IM Version",
+                        "from": "Does imcl command exists",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Does imcl command exists",
+                        "x": 260,
+                        "y": 99,
+                        "h": 60,
+                        "w": 220
+                    },
+                    {
+                        "name": "03dac45d594d1e8f2df98897b0b223",
+                        "x": 96,
+                        "y": 400,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Check IM Version",
+                        "x": -45,
+                        "y": 180,
+                        "h": 60,
+                        "w": 170
+                    }
+                ],
+                "type": "graph",
+                "name": "b9fb4d3d-bca0-4bfe-9865-0cdd19a4ede4",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "03dac45d594d1e8f2df98897b0b223",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "${p:component\/custom\/im_tools_dir}\/imcl -version",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Check IM Version",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "ls ${p:component\/custom\/im_tools_dir}\/imcl",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Does imcl command exists",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "install-or-upgrade",
+            "description": "Install or upgrade IIM",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/ff75a776-2182-442e-aa76-47b71f99d59d\/processes\/e6d31f6b-10a7-4985-b0d2-a751550796a0",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Check Available Disk Space",
+                        "from": "Clean up Files and Directories",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Download Artifacts",
+                        "from": "Check Available Disk Space",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "8204b732aabe1b730847f02bf4967a",
+                        "from": "Install or Upgrade IBM Installation Manager",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "change permissions",
+                        "from": "Download Artifacts",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "8204b732aabe1b730847f02bf4967a",
+                        "from": "Check Available Disk Space",
+                        "type": "FAILURE",
+                        "value": ""
+                    },
+                    {
+                        "to": "Clean up Files and Directories",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Install or Upgrade IBM Installation Manager",
+                        "from": "change permissions",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Download Artifacts",
+                        "x": 860,
+                        "y": 65,
+                        "h": 60,
+                        "w": 220
+                    },
+                    {
+                        "name": "Install or Upgrade IBM Installation Manager",
+                        "x": 822.5,
+                        "y": 320,
+                        "h": 60,
+                        "w": 340
+                    },
+                    {
+                        "name": "Check Available Disk Space",
+                        "x": 550,
+                        "y": 55,
+                        "h": 60,
+                        "w": 260
+                    },
+                    {
+                        "name": "change permissions",
+                        "x": 860,
+                        "y": 205,
+                        "h": 60,
+                        "w": 190
+                    },
+                    {
+                        "name": "8204b732aabe1b730847f02bf4967a",
+                        "x": 602.5,
+                        "y": 325,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Clean up Files and Directories",
+                        "x": 200,
+                        "y": 50,
+                        "h": 60,
+                        "w": 270
+                    }
+                ],
+                "type": "graph",
+                "name": "19d5d78a-ee20-4d9b-9f19-bff5edd9569b",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "8204b732aabe1b730847f02bf4967a",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Check Available Disk Space",
+                        "pluginName": "System Information",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "path": "\/",
+                            "size": "30720"
+                        },
+                        "type": "plugin",
+                        "name": "Check Available Disk Space",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Install or Upgrade IBM Installation Manager",
+                        "pluginName": "IBM Installation Manager",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "mode": "administrator",
+                            "log": "iim-install.log",
+                            "installationDirectory": "",
+                            "dataLocation": "",
+                            "installationKitDirectory": "."
+                        },
+                        "type": "plugin",
+                        "name": "Install or Upgrade IBM Installation Manager",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "chmod -R +x *",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "change permissions",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Download Artifacts",
+                        "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+                        "pluginVersion": 26,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "artifactSetBaseDir": "",
+                            "fileIncludePatterns": "**\/*",
+                            "fileExcludePatterns": "",
+                            "syncMode": "true",
+                            "fullVerification": "true",
+                            "setFileExecuteBits": "false",
+                            "verifyFileIntegrity": "false",
+                            "versionId": "${p:version.id}",
+                            "serverUrl": "${p:server.url}",
+                            "compId": "${p:component.id}",
+                            "resId": "${p:resource.id}",
+                            "charset": "",
+                            "label": ""
+                        },
+                        "type": "plugin",
+                        "name": "Download Artifacts",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Delete Files and Directories",
+                        "pluginName": "File Utils",
+                        "pluginVersion": 46,
+                        "properties": {
+                            "baseDir": ".",
+                            "includes": "**\/*",
+                            "excludes": "",
+                            "followSymlinks": "false",
+                            "caseSensitive": "true"
+                        },
+                        "type": "plugin",
+                        "name": "Clean up Files and Directories",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "uninstall-IM",
+            "description": "process type uninstall",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "REMOVE",
+            "status": "Active",
+            "active": true,
+            "path": "components\/ff75a776-2182-442e-aa76-47b71f99d59d\/processes\/cda97ab4-9fef-4686-9fc4-3b00b4252489",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "43f78494b72e1caa0ac394ad8ba4c4",
+                        "from": "Uninstall IBM Installation Manager",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Uninstall IBM Installation Manager",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Uninstall IBM Installation Manager",
+                        "x": -85,
+                        "y": 185,
+                        "h": 60,
+                        "w": 290
+                    },
+                    {
+                        "name": "43f78494b72e1caa0ac394ad8ba4c4",
+                        "x": -5,
+                        "y": 420,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "3ccb954a-5ca0-4693-bb52-77bad829c13e",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "43f78494b72e1caa0ac394ad8ba4c4",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Uninstall IBM Installation Manager",
+                        "pluginName": "IBM Installation Manager",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "mode": "administrator",
+                            "dataLocation": "${p:component\/IM.Data.Path}"
+                        },
+                        "type": "plugin",
+                        "name": "Uninstall IBM Installation Manager",
+                        "children": []
+                    }
+                ]
+            }
+        }
+    ],
+    "configTemplates": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": [{
+        "id": "c847a467-5cc1-4976-91c8-7a23e7f496d1",
+        "name": "RTW",
+        "color": "#00B2EF",
+        "description": "",
+        "objectType": "Component"
+    }]
+}

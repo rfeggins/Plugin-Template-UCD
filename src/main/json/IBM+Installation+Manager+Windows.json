@@ -1,0 +1,227 @@
+{
+    "name": "IBM Installation Manager Windows",
+    "description": "",
+    "created": 1476794214440,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "sourceConfigPluginName": "File System (Versioned)",
+    "envPropDefs": [],
+    "resPropDefs": [],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "custom",
+            "properties": []
+        },
+        {
+            "name": "template",
+            "properties": []
+        },
+        {
+            "name": "FileSystemVersionedComponentProperties",
+            "properties": [
+                {
+                    "name": "basePath",
+                    "value": "\/opt\/IBM\/Software\/InstallationManagerWindows",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "extensions",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "saveFileExecuteBits",
+                    "value": "false",
+                    "description": "",
+                    "secure": false
+                }
+            ]
+        }
+    ]},
+    "processes": [{
+        "name": "Install Or Upgrade",
+        "description": "",
+        "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+        "takesVersion": true,
+        "inventoryActionType": "ADD",
+        "status": "Active",
+        "configActionType": "ADD",
+        "active": true,
+        "path": "components\/05e92c13-d918-4d2b-8637-05b70cce2ba5\/processes\/7ba63ba0-c38a-4f89-a738-f61144701d6c",
+        "propDefs": [],
+        "rootActivity": {
+            "edges": [
+                {
+                    "to": "1c3f591443368362d6634d06be7c03",
+                    "from": "Install or Upgrade IBM Installation Manager",
+                    "type": "SUCCESS",
+                    "value": ""
+                },
+                {
+                    "to": "Download Artifacts",
+                    "from": "Check Available Disk Space",
+                    "type": "SUCCESS",
+                    "value": ""
+                },
+                {
+                    "to": "Cleanup Working Directory",
+                    "type": "ALWAYS",
+                    "value": ""
+                },
+                {
+                    "to": "Check Available Disk Space",
+                    "from": "Cleanup Working Directory",
+                    "type": "SUCCESS",
+                    "value": ""
+                },
+                {
+                    "to": "Install or Upgrade IBM Installation Manager",
+                    "from": "Download Artifacts",
+                    "type": "SUCCESS",
+                    "value": ""
+                }
+            ],
+            "offsets": [
+                {
+                    "name": "Install or Upgrade IBM Installation Manager",
+                    "x": 255,
+                    "y": 292,
+                    "h": 60,
+                    "w": 340
+                },
+                {
+                    "name": "Check Available Disk Space",
+                    "x": -9,
+                    "y": 96,
+                    "h": 60,
+                    "w": 260
+                },
+                {
+                    "name": "Download Artifacts",
+                    "x": 129,
+                    "y": 190,
+                    "h": 60,
+                    "w": 220
+                },
+                {
+                    "name": "1c3f591443368362d6634d06be7c03",
+                    "x": -5,
+                    "y": 420,
+                    "h": 50,
+                    "w": 90
+                },
+                {
+                    "name": "Cleanup Working Directory",
+                    "x": 171,
+                    "y": 19,
+                    "h": 60,
+                    "w": 220
+                }
+            ],
+            "type": "graph",
+            "name": "87fa0129-8a93-4ec7-8c39-0c4af4de8c93",
+            "children": [
+                {
+                    "type": "finish",
+                    "name": "1c3f591443368362d6634d06be7c03",
+                    "children": []
+                },
+                {
+                    "allowFailure": false,
+                    "useImpersonation": false,
+                    "showHidden": false,
+                    "impersonationUseSudo": false,
+                    "commandName": "Check Available Disk Space",
+                    "pluginName": "System Information",
+                    "pluginVersion": 3,
+                    "properties": {
+                        "path": "c:\\",
+                        "size": "30720"
+                    },
+                    "type": "plugin",
+                    "name": "Check Available Disk Space",
+                    "children": []
+                },
+                {
+                    "allowFailure": false,
+                    "useImpersonation": false,
+                    "showHidden": false,
+                    "impersonationUseSudo": false,
+                    "commandName": "Download Artifacts",
+                    "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+                    "pluginVersion": 26,
+                    "properties": {
+                        "directoryOffset": ".",
+                        "artifactSetBaseDir": "",
+                        "fileIncludePatterns": "**\/*",
+                        "fileExcludePatterns": "",
+                        "syncMode": "true",
+                        "fullVerification": "true",
+                        "setFileExecuteBits": "false",
+                        "verifyFileIntegrity": "false",
+                        "versionId": "${p:version.id}",
+                        "serverUrl": "${p:server.url}",
+                        "compId": "${p:component.id}",
+                        "resId": "${p:resource.id}",
+                        "charset": "",
+                        "label": ""
+                    },
+                    "type": "plugin",
+                    "name": "Download Artifacts",
+                    "children": []
+                },
+                {
+                    "allowFailure": false,
+                    "useImpersonation": false,
+                    "showHidden": false,
+                    "impersonationUseSudo": false,
+                    "commandName": "Install or Upgrade IBM Installation Manager",
+                    "pluginName": "IBM Installation Manager",
+                    "pluginVersion": 3,
+                    "properties": {
+                        "mode": "administrator",
+                        "log": "installationManagereWindows.log",
+                        "installationDirectory": "",
+                        "dataLocation": "",
+                        "installationKitDirectory": "."
+                    },
+                    "type": "plugin",
+                    "name": "Install or Upgrade IBM Installation Manager",
+                    "children": []
+                },
+                {
+                    "allowFailure": false,
+                    "useImpersonation": false,
+                    "showHidden": false,
+                    "impersonationUseSudo": false,
+                    "commandName": "Shell",
+                    "pluginName": "Shell",
+                    "pluginVersion": 6,
+                    "properties": {
+                        "directoryOffset": ".",
+                        "shellInterpreter": "",
+                        "scriptBody": "del \/s \/Q *.*",
+                        "runAsDaemon": "false",
+                        "outputFile": ""
+                    },
+                    "type": "plugin",
+                    "name": "Cleanup Working Directory",
+                    "children": []
+                }
+            ]
+        }
+    }],
+    "configTemplates": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}

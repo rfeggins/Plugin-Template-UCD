@@ -1,0 +1,934 @@
+{
+    "name": "BPM Deploy test",
+    "description": "",
+    "enforceCompleteSnapshots": false,
+    "propSheet": {"properties": []},
+    "templatePropSheet": {
+        "name": "template",
+        "properties": []
+    },
+    "components": [
+        {
+            "name": "ResponsiveHiring",
+            "description": "",
+            "created": 1469014796246,
+            "componentType": "STANDARD",
+            "ignoreQualifiers": 0,
+            "importAutomatically": false,
+            "useVfs": true,
+            "active": true,
+            "deleted": false,
+            "defaultVersionType": "FULL",
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "sourceConfigPluginName": "File System",
+            "envPropDefs": [],
+            "resPropDefs": [],
+            "versionPropDefs": [],
+            "propSheetGroup": {"propSheets": [
+                {
+                    "name": "custom",
+                    "properties": [
+                        {
+                            "name": "my wsadmin path",
+                            "value": "C:\\IBM\\WebSphere\\AppServer\\profiles\\PSNode01Profile\\bin",
+                            "description": "",
+                            "secure": false
+                        },
+                        {
+                            "name": "Process application",
+                            "value": "ResponsiveHiring",
+                            "description": "",
+                            "secure": false
+                        },
+                        {
+                            "name": "Process application package",
+                            "value": "ResponsiveHiringv1.0",
+                            "description": "",
+                            "secure": false
+                        },
+                        {
+                            "name": "Process application snapshot acronym",
+                            "value": "S1",
+                            "description": "S1",
+                            "secure": false
+                        },
+                        {
+                            "name": "Process applicaton acronym",
+                            "value": "HSAV1",
+                            "description": "",
+                            "secure": false
+                        }
+                    ]
+                },
+                {
+                    "name": "template",
+                    "properties": []
+                },
+                {
+                    "name": "FileSystemComponentProperties",
+                    "properties": [
+                        {
+                            "name": "basePath",
+                            "value": "C:\\Users\\Administrator\\Desktop\\SourceforDeploy\/pkg",
+                            "description": "",
+                            "secure": false
+                        },
+                        {
+                            "name": "extensions",
+                            "description": "",
+                            "secure": false
+                        },
+                        {
+                            "name": "namePattern",
+                            "value": "${version}",
+                            "description": "",
+                            "secure": false
+                        },
+                        {
+                            "name": "nextNumber",
+                            "description": "",
+                            "secure": false
+                        },
+                        {
+                            "name": "useNamePattern",
+                            "value": "false",
+                            "description": "",
+                            "secure": false
+                        }
+                    ]
+                }
+            ]},
+            "processes": [
+                {
+                    "name": "Deploy-Offline-Package",
+                    "description": "",
+                    "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                    "takesVersion": true,
+                    "inventoryActionType": "ADD",
+                    "status": "Active",
+                    "configActionType": "ADD",
+                    "active": true,
+                    "path": "components\/3d25877d-b284-4777-9b46-8f61b7a58901\/processes\/9b2f9cbb-79ae-4e5d-a5e7-cae6daed9592",
+                    "propDefs": [],
+                    "rootActivity": {
+                        "edges": [
+                            {
+                                "to": "a716f9f28795566105f9de99046718",
+                                "from": "Is snapshop installed",
+                                "type": "SUCCESS",
+                                "value": ""
+                            },
+                            {
+                                "to": "Download Artifacts",
+                                "from": "Is Process Server Environment",
+                                "type": "SUCCESS",
+                                "value": ""
+                            },
+                            {
+                                "to": "Is snapshop installed",
+                                "from": "BPM Deploy offline package",
+                                "type": "SUCCESS",
+                                "value": ""
+                            },
+                            {
+                                "to": "Is Process Server Environment",
+                                "type": "ALWAYS",
+                                "value": ""
+                            },
+                            {
+                                "to": "a716f9f28795566105f9de99046718",
+                                "from": "is snapshot installed",
+                                "type": "SUCCESS",
+                                "value": ""
+                            },
+                            {
+                                "to": "is snapshot installed",
+                                "from": "Download Artifacts",
+                                "type": "SUCCESS",
+                                "value": ""
+                            },
+                            {
+                                "to": "BPM Deploy offline package",
+                                "from": "is snapshot installed",
+                                "type": "FAILURE",
+                                "value": ""
+                            }
+                        ],
+                        "offsets": [
+                            {
+                                "name": "Is Process Server Environment",
+                                "x": 200,
+                                "y": 47,
+                                "h": 60,
+                                "w": 250
+                            },
+                            {
+                                "name": "Is snapshop installed",
+                                "x": 100,
+                                "y": 396,
+                                "h": 60,
+                                "w": 200
+                            },
+                            {
+                                "name": "a716f9f28795566105f9de99046718",
+                                "x": 35,
+                                "y": 530,
+                                "h": 50,
+                                "w": 90
+                            },
+                            {
+                                "name": "is snapshot installed",
+                                "x": -210,
+                                "y": 240,
+                                "h": 60,
+                                "w": 190
+                            },
+                            {
+                                "name": "BPM Deploy offline package",
+                                "x": 85,
+                                "y": 270,
+                                "h": 60,
+                                "w": 230
+                            },
+                            {
+                                "name": "Download Artifacts",
+                                "x": -60,
+                                "y": 150,
+                                "h": 60,
+                                "w": 220
+                            }
+                        ],
+                        "type": "graph",
+                        "name": "b4d6f5aa-47ca-4825-977a-cbcfd34631d8",
+                        "children": [
+                            {
+                                "type": "finish",
+                                "name": "a716f9f28795566105f9de99046718",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": false,
+                                "impersonationUseSudo": false,
+                                "commandName": "Download Artifacts",
+                                "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+                                "pluginVersion": 26,
+                                "properties": {
+                                    "directoryOffset": ".",
+                                    "artifactSetBaseDir": "",
+                                    "fileIncludePatterns": "**\/*",
+                                    "fileExcludePatterns": "",
+                                    "syncMode": "true",
+                                    "fullVerification": "true",
+                                    "setFileExecuteBits": "false",
+                                    "verifyFileIntegrity": "false",
+                                    "versionId": "${p:version.id}",
+                                    "serverUrl": "${p:server.url}",
+                                    "compId": "${p:component.id}",
+                                    "resId": "${p:resource.id}",
+                                    "charset": "",
+                                    "label": ""
+                                },
+                                "type": "plugin",
+                                "name": "Download Artifacts",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": true,
+                                "impersonationUseSudo": false,
+                                "commandName": "Deploy Offline Package",
+                                "pluginName": "WebSphere BPM",
+                                "pluginVersion": 7,
+                                "properties": {
+                                    "package": "${p:component\/Process application package}",
+                                    "makeDefault": "true",
+                                    "containerAcronym": "${p:component\/Process application}",
+                                    "containerSnapshotAcronym": "${p:component\/Process application snapshot acronym}",
+                                    "useSOAPProps": "false",
+                                    "profileRoot": "${p:resource\/profile.root.directory}",
+                                    "host": "",
+                                    "user": "${p:resource\/websphere.user}",
+                                    "password": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|Zjjlz9cfmnhoyHGKWTzr8g==|f24aEP3jMKsc2kMjXxjVgswCsdGrb4a+C2DBKGbjJMObmk2SRxxFwrzwylZfMZR7}",
+                                    "port": "${p:resource\/websphere.port}",
+                                    "connType": "SOAP",
+                                    "verbose": "false"
+                                },
+                                "type": "plugin",
+                                "name": "BPM Deploy offline package",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": false,
+                                "impersonationUseSudo": false,
+                                "workingDir": "${p:component\/my wsadmin path}",
+                                "postProcessingScript": {
+                                    "id": "82881971-2201-4d1d-9f1f-373e0d57a46e",
+                                    "name": "getProcessAppSnapshotAcronym",
+                                    "description": "",
+                                    "body": "if (properties.get(\"exitCode\")!=0) {\n  properties.put(\"Status\", \"Failure\");\n} else {\n  properties.put(\"Status\", \"Success\");\n}\n\nscanner.register(\"Acronym: *\", function(lineNumber, line) {\n  properties.put(\"appSnapshotAcronym\", line);\n\n});\n\nscanner.scan();\n"
+                                },
+                                "commandName": "Shell",
+                                "pluginName": "Shell",
+                                "pluginVersion": 6,
+                                "properties": {
+                                    "directoryOffset": ".",
+                                    "shellInterpreter": "",
+                                    "scriptBody": "wsadmin.bat -lang jython  -user ${p:resource\/websphere.user} -password ${p:resource\/websphere.password} -conntype SOAP -port ${p:resource\/websphere.port} -c \"print AdminTask.BPMShowProcessApplication('[-containerAcronym ${p:component\/Process applicaton acronym}]')\"",
+                                    "runAsDaemon": "false",
+                                    "outputFile": ""
+                                },
+                                "type": "plugin",
+                                "name": "is snapshot installed",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": false,
+                                "impersonationUseSudo": false,
+                                "workingDir": "${p:component\/my wsadmin path}",
+                                "commandName": "Shell",
+                                "pluginName": "Shell",
+                                "pluginVersion": 6,
+                                "properties": {
+                                    "directoryOffset": ".",
+                                    "shellInterpreter": "",
+                                    "scriptBody": "wsadmin.bat -lang jython  -user ${p:resource\/websphere.user} -password ${p:resource\/websphere.password} -conntype SOAP -port ${p:resource\/websphere.port} -c \"print AdminTask.BPMShowProcessApplication('[-containerAcronym ${p:component\/Process applicaton acronym}]')\"",
+                                    "runAsDaemon": "false",
+                                    "outputFile": ""
+                                },
+                                "type": "plugin",
+                                "name": "Is snapshop installed",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": false,
+                                "impersonationUseSudo": false,
+                                "commandName": "Shell",
+                                "pluginName": "Shell",
+                                "pluginVersion": 6,
+                                "properties": {
+                                    "directoryOffset": ".",
+                                    "shellInterpreter": "",
+                                    "scriptBody": "IF \"${p:environment\/env.type}\" == \"server\"  (\n   EXIT 0\n)  ELSE (\n   echo \"Attempting to run Deploy command on Process Center\"\n    EXIT 1\n)",
+                                    "runAsDaemon": "false",
+                                    "outputFile": ""
+                                },
+                                "type": "plugin",
+                                "name": "Is Process Server Environment",
+                                "children": []
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "GenerateOfflinePackage",
+                    "description": "",
+                    "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                    "takesVersion": false,
+                    "status": "",
+                    "active": true,
+                    "path": "components\/3d25877d-b284-4777-9b46-8f61b7a58901\/processes\/b3c984d7-28c0-42ed-aa0c-acd9752a06e3",
+                    "propDefs": [],
+                    "rootActivity": {
+                        "edges": [
+                            {
+                                "to": "Delete Files and Directories",
+                                "type": "ALWAYS",
+                                "value": ""
+                            },
+                            {
+                                "to": "Generate offline package",
+                                "from": "List resources",
+                                "type": "SUCCESS",
+                                "value": ""
+                            },
+                            {
+                                "to": "List resources",
+                                "from": "Shell",
+                                "type": "SUCCESS",
+                                "value": ""
+                            },
+                            {
+                                "to": "Create Version",
+                                "from": "Generate offline package",
+                                "type": "SUCCESS",
+                                "value": ""
+                            },
+                            {
+                                "to": "Shell",
+                                "from": "Delete Files and Directories",
+                                "type": "SUCCESS",
+                                "value": ""
+                            },
+                            {
+                                "to": "518d18753a8138316b9a6156ab234c",
+                                "from": "Create Version",
+                                "type": "SUCCESS",
+                                "value": ""
+                            }
+                        ],
+                        "offsets": [
+                            {
+                                "name": "Delete Files and Directories",
+                                "x": 75,
+                                "y": 90,
+                                "h": 60,
+                                "w": 260
+                            },
+                            {
+                                "name": "List resources",
+                                "x": 75,
+                                "y": 170,
+                                "h": 60,
+                                "w": 160
+                            },
+                            {
+                                "name": "Shell",
+                                "x": -175,
+                                "y": 150,
+                                "h": 60,
+                                "w": 140
+                            },
+                            {
+                                "name": "518d18753a8138316b9a6156ab234c",
+                                "x": -5,
+                                "y": 420,
+                                "h": 50,
+                                "w": 90
+                            },
+                            {
+                                "name": "Create Version",
+                                "x": -250,
+                                "y": 350,
+                                "h": 60,
+                                "w": 190
+                            },
+                            {
+                                "name": "Generate offline package",
+                                "x": -5,
+                                "y": 290,
+                                "h": 60,
+                                "w": 240
+                            }
+                        ],
+                        "type": "graph",
+                        "name": "2b304c3a-d6a1-4159-bcf9-d29718ce8ac5",
+                        "children": [
+                            {
+                                "type": "finish",
+                                "name": "518d18753a8138316b9a6156ab234c",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": true,
+                                "impersonationUseSudo": false,
+                                "commandName": "Generate Offline Package",
+                                "pluginName": "WebSphere BPM",
+                                "pluginVersion": 7,
+                                "properties": {
+                                    "servers": "${p:resource\/offline.server.name}",
+                                    "containerAcronym": "${p:component\/Process application}",
+                                    "containerSnapshotAcronym": "${p:component\/Process application snapshot acronym}",
+                                    "containerTrackAcronym": "Main",
+                                    "skipGovernance": "false",
+                                    "useSOAPProps": "false",
+                                    "profileRoot": "${p:resource\/profile.root.directory}",
+                                    "host": "localhost",
+                                    "user": "${p:resource\/websphere.user}",
+                                    "password": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|dvMYfhlNnmHC964UEecQWA==|dF7wIaXOlvu8AzExmIUZUSclMELJmHHKoNdwidIO8khokV7AkC7KYlZSGDhv6W1f}",
+                                    "port": "${p:resource\/websphere.port}",
+                                    "connType": "SOAP",
+                                    "verbose": "false",
+                                    "timeout": ""
+                                },
+                                "type": "plugin",
+                                "name": "Generate offline package",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": false,
+                                "impersonationUseSudo": false,
+                                "commandName": "Create Version",
+                                "pluginName": "IBM UrbanCode Deploy Versions",
+                                "pluginVersion": 62,
+                                "properties": {
+                                    "componentName": "ResponsiveHiring",
+                                    "versionName": "",
+                                    "uploadFiles": "true",
+                                    "includes": "**\/*",
+                                    "excludes": "",
+                                    "saveFileExecuteBits": "false"
+                                },
+                                "type": "plugin",
+                                "name": "Create Version",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": false,
+                                "impersonationUseSudo": false,
+                                "commandName": "Shell",
+                                "pluginName": "Shell",
+                                "pluginVersion": 6,
+                                "properties": {
+                                    "directoryOffset": ".",
+                                    "shellInterpreter": "",
+                                    "scriptBody": "echo ${p:component.name}\necho  ${p:component\/Process application}\necho ${p:component\/Process application package}\n\necho ${p:component\/Process application snapshot acronym}\necho ${p:component\/Process applicaton acronym}",
+                                    "runAsDaemon": "false",
+                                    "outputFile": ""
+                                },
+                                "type": "plugin",
+                                "name": "List resources",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": false,
+                                "impersonationUseSudo": false,
+                                "commandName": "Delete Files and Directories",
+                                "pluginName": "File Utils",
+                                "pluginVersion": 46,
+                                "properties": {
+                                    "baseDir": ".",
+                                    "includes": "**\/*",
+                                    "excludes": "",
+                                    "followSymlinks": "false",
+                                    "caseSensitive": "true"
+                                },
+                                "type": "plugin",
+                                "name": "Delete Files and Directories",
+                                "children": []
+                            },
+                            {
+                                "allowFailure": false,
+                                "useImpersonation": false,
+                                "showHidden": false,
+                                "impersonationUseSudo": false,
+                                "commandName": "Shell",
+                                "pluginName": "Shell",
+                                "pluginVersion": 6,
+                                "properties": {
+                                    "directoryOffset": ".",
+                                    "shellInterpreter": "",
+                                    "scriptBody": "echo \"Running Command\"",
+                                    "runAsDaemon": "false",
+                                    "outputFile": ""
+                                },
+                                "type": "plugin",
+                                "name": "Shell",
+                                "children": []
+                            }
+                        ]
+                    }
+                }
+            ],
+            "configTemplates": [],
+            "genericProcesses": [],
+            "teamMappings": [],
+            "tags": [{
+                "id": "88a2ce79-8294-404e-9a92-b41a47fff767",
+                "name": "BPM",
+                "color": "#F389AF",
+                "description": "",
+                "objectType": "Component"
+            }]
+        },
+        {
+            "name": "Retrieve files",
+            "description": "",
+            "created": 1465248340803,
+            "componentType": "STANDARD",
+            "ignoreQualifiers": 0,
+            "importAutomatically": false,
+            "useVfs": false,
+            "active": true,
+            "deleted": false,
+            "defaultVersionType": "FULL",
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "envPropDefs": [],
+            "resPropDefs": [],
+            "versionPropDefs": [],
+            "propSheetGroup": {"propSheets": [
+                {
+                    "name": "template",
+                    "properties": []
+                },
+                {
+                    "name": "custom",
+                    "properties": []
+                }
+            ]},
+            "processes": [{
+                "name": "Retrieve",
+                "description": "",
+                "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                "takesVersion": false,
+                "status": "",
+                "active": true,
+                "path": "components\/80205113-32d6-4da1-9143-06a86f063a73\/processes\/e3035dce-980c-4f9e-8042-0eb3a4e99b14",
+                "propDefs": [],
+                "rootActivity": {
+                    "edges": [
+                        {
+                            "to": "Export process application",
+                            "type": "ALWAYS",
+                            "value": ""
+                        },
+                        {
+                            "to": "Generate offline package",
+                            "type": "ALWAYS",
+                            "value": ""
+                        },
+                        {
+                            "to": "6b44b1668346df4e9ba77cbdb07de4",
+                            "from": "Generate offline package",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "6b44b1668346df4e9ba77cbdb07de4",
+                            "from": "Export process application",
+                            "type": "SUCCESS",
+                            "value": ""
+                        }
+                    ],
+                    "offsets": [
+                        {
+                            "name": "6b44b1668346df4e9ba77cbdb07de4",
+                            "x": 15,
+                            "y": 210,
+                            "h": 50,
+                            "w": 90
+                        },
+                        {
+                            "name": "Generate offline package",
+                            "x": 60,
+                            "y": 120,
+                            "h": 60,
+                            "w": 240
+                        },
+                        {
+                            "name": "Export process application",
+                            "x": -224,
+                            "y": 120,
+                            "h": 60,
+                            "w": 240
+                        }
+                    ],
+                    "type": "graph",
+                    "name": "826c4d3f-9d8c-41ce-8354-e86455032206",
+                    "children": [
+                        {
+                            "type": "finish",
+                            "name": "6b44b1668346df4e9ba77cbdb07de4",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "workingDir": "c:\\IBM\\UCD",
+                            "commandName": "Export Process Application",
+                            "pluginName": "WebSphere BPM",
+                            "pluginVersion": 7,
+                            "properties": {
+                                "containerAcronym": "Hiring Sample Advanced (HSAV1)",
+                                "containerSnapshotAcronym": "Snapshot1",
+                                "containerTrackAcronym": "Main",
+                                "package": "",
+                                "useSOAPProps": "true",
+                                "profileRoot": "${p:resource\/profile.root.directory}",
+                                "host": "",
+                                "user": "${p:resource\/websphere.user}",
+                                "password": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|0OLQVnU2Q9Fy6uvJ+6Ez5A==|nN5PMDPwCAn\/tqc8a4PbfQuos+Rf5tvv04bU1bLBp8wuhQT4rt41mTCC+0zzw5pF}",
+                                "port": "${p:resource\/websphere.port}",
+                                "connType": "${p:resource\/websphere.connType}",
+                                "verbose": "false"
+                            },
+                            "type": "plugin",
+                            "name": "Export process application",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "workingDir": "c:\\IBM\\UCD\\",
+                            "commandName": "Generate Offline Package",
+                            "pluginName": "WebSphere BPM",
+                            "pluginVersion": 7,
+                            "properties": {
+                                "servers": "IBMBPMNode01",
+                                "containerAcronym": "Hiring Sample Advanced (HSAV1)",
+                                "containerSnapshotAcronym": "Snapshot1",
+                                "containerTrackAcronym": "Main",
+                                "skipGovernance": "false",
+                                "useSOAPProps": "true",
+                                "profileRoot": "${p:resource\/profile.root.directory}",
+                                "host": "",
+                                "user": "${p:resource\/websphere.user}",
+                                "password": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|g10DAx0PI06Hxle14PvVOQ==|drqJ54WB7I5+gjmnHgjfzNZcTS3bTECr4Z7ZamzCue27QQmqQtx6pKVtHUHr0dus}",
+                                "port": "${p:resource\/websphere.port}",
+                                "connType": "${p:resource\/websphere.connType}",
+                                "verbose": "false",
+                                "timeout": ""
+                            },
+                            "type": "plugin",
+                            "name": "Generate offline package",
+                            "children": []
+                        }
+                    ]
+                }
+            }],
+            "configTemplates": [],
+            "genericProcesses": [],
+            "teamMappings": [],
+            "tags": []
+        },
+        {
+            "name": "Z BPM-EAR",
+            "description": "",
+            "created": 1465221533581,
+            "componentType": "STANDARD",
+            "ignoreQualifiers": 0,
+            "importAutomatically": false,
+            "useVfs": true,
+            "active": true,
+            "deleted": false,
+            "defaultVersionType": "FULL",
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "envPropDefs": [],
+            "resPropDefs": [],
+            "versionPropDefs": [],
+            "propSheetGroup": {"propSheets": [
+                {
+                    "name": "template",
+                    "properties": []
+                },
+                {
+                    "name": "custom",
+                    "properties": []
+                }
+            ]},
+            "processes": [],
+            "configTemplates": [],
+            "genericProcesses": [],
+            "teamMappings": [],
+            "tags": []
+        },
+        {
+            "name": "Z BPM-TWX",
+            "description": "",
+            "created": 1465221572548,
+            "componentType": "STANDARD",
+            "ignoreQualifiers": 0,
+            "importAutomatically": false,
+            "useVfs": true,
+            "active": true,
+            "deleted": false,
+            "defaultVersionType": "FULL",
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "envPropDefs": [],
+            "resPropDefs": [],
+            "versionPropDefs": [],
+            "propSheetGroup": {"propSheets": [
+                {
+                    "name": "template",
+                    "properties": []
+                },
+                {
+                    "name": "custom",
+                    "properties": []
+                }
+            ]},
+            "processes": [{
+                "name": "Deploy",
+                "description": "",
+                "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+                "takesVersion": true,
+                "inventoryActionType": "ADD",
+                "status": "Active",
+                "configActionType": "ADD",
+                "active": true,
+                "path": "components\/b0fdf804-5341-419c-bba0-6220cfe29e68\/processes\/194bdbf3-a99c-4dad-88b3-18bf77f71ab4",
+                "propDefs": [],
+                "rootActivity": {
+                    "edges": [
+                        {
+                            "to": "c3abb8298eb7b92278bbd80e0b3630",
+                            "from": "Deploy offline package",
+                            "type": "SUCCESS",
+                            "value": ""
+                        },
+                        {
+                            "to": "Deploy offline package",
+                            "type": "ALWAYS",
+                            "value": ""
+                        }
+                    ],
+                    "offsets": [
+                        {
+                            "name": "Deploy offline package",
+                            "x": -80,
+                            "y": 110,
+                            "h": 60,
+                            "w": 230
+                        },
+                        {
+                            "name": "c3abb8298eb7b92278bbd80e0b3630",
+                            "x": -10,
+                            "y": 250,
+                            "h": 50,
+                            "w": 90
+                        }
+                    ],
+                    "type": "graph",
+                    "name": "e96bf4ec-81d1-4d0f-862a-f42467ebf889",
+                    "children": [
+                        {
+                            "type": "finish",
+                            "name": "c3abb8298eb7b92278bbd80e0b3630",
+                            "children": []
+                        },
+                        {
+                            "allowFailure": false,
+                            "useImpersonation": false,
+                            "showHidden": false,
+                            "impersonationUseSudo": false,
+                            "commandName": "Deploy Offline Package",
+                            "pluginName": "WebSphere BPM",
+                            "pluginVersion": 7,
+                            "properties": {
+                                "package": "${p:resource\/offline.server.name}",
+                                "makeDefault": "true",
+                                "containerAcronym": "",
+                                "containerSnapshotAcronym": "Tip",
+                                "useSOAPProps": "true",
+                                "profileRoot": "${p:resource\/profile.root.directory}",
+                                "host": "",
+                                "user": "${p:resource\/websphere.user}",
+                                "password": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|hAkY0LMEhyK4RwsF3XcqDg==|Rn1uFj8LRSTRhUJIoeJ9oo3r0+uA6VhdkYoyN5hvojL\/UAW0LKjAtEc+Km4KceV2}",
+                                "port": "${p:resource\/websphere.port}",
+                                "connType": "${p:resource\/websphere.connType}",
+                                "verbose": "false"
+                            },
+                            "type": "plugin",
+                            "name": "Deploy offline package",
+                            "children": []
+                        }
+                    ]
+                }
+            }],
+            "configTemplates": [],
+            "genericProcesses": [],
+            "teamMappings": [],
+            "tags": []
+        }
+    ],
+    "environments": [
+        {
+            "name": "Test Retrieve",
+            "description": "",
+            "color": "#00B2EF",
+            "requireApprovals": false,
+            "exemptProcesses": [],
+            "lockSnapshots": false,
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "order": 0,
+            "active": true,
+            "propSheet": {"properties": []},
+            "templatePropSheet": {
+                "name": "template",
+                "properties": []
+            },
+            "baseResources": [],
+            "componentPropSheets": [
+                {
+                    "properties": [],
+                    "componentName": "ResponsiveHiring"
+                },
+                {
+                    "properties": [],
+                    "componentName": "Retrieve files"
+                },
+                {
+                    "properties": [],
+                    "componentName": "Z BPM-EAR"
+                },
+                {
+                    "properties": [],
+                    "componentName": "Z BPM-TWX"
+                }
+            ],
+            "versionConditions": [],
+            "teamMappings": []
+        },
+        {
+            "name": "BPM Environment",
+            "description": "",
+            "color": "#00B2EF",
+            "requireApprovals": false,
+            "exemptProcesses": [],
+            "lockSnapshots": false,
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "order": 1,
+            "active": true,
+            "propSheet": {"properties": []},
+            "templatePropSheet": {
+                "name": "template",
+                "properties": []
+            },
+            "baseResources": [{
+                "path": "\/BPM Environment",
+                "id": "adf32825-15d9-4a6d-af5f-20e80bc8663b"
+            }],
+            "componentPropSheets": [
+                {
+                    "properties": [],
+                    "componentName": "ResponsiveHiring"
+                },
+                {
+                    "properties": [],
+                    "componentName": "Retrieve files"
+                },
+                {
+                    "properties": [],
+                    "componentName": "Z BPM-EAR"
+                },
+                {
+                    "properties": [],
+                    "componentName": "Z BPM-TWX"
+                }
+            ],
+            "versionConditions": [],
+            "teamMappings": []
+        }
+    ],
+    "statuses": [],
+    "processes": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}

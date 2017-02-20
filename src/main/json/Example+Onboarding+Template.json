@@ -1,0 +1,30 @@
+{
+    "securityResourceId": "ccf1d551-8345-4e2b-8fbf-7c483635cba4",
+    "path": "componentTemplates\/2a82e5a6-c507-4d6f-9580-c77a3d252268",
+    "name": "Example Onboarding Template",
+    "description": "",
+    "ignoreQualifiers": 0,
+    "componentType": "STANDARD",
+    "tags": [],
+    "active": true,
+    "envPropDefs": [],
+    "resPropDefs": [],
+    "propDefs": [{
+        "name": "jenkins.job",
+        "label": "Jenkins Job",
+        "pattern": "",
+        "type": "HTTP_SELECT",
+        "required": true,
+        "description": "Select from available Jenkins jobs",
+        "placeholder": "",
+        "httpUrl": "http:\/\/ucr.local:7070\/jenkins\/api\/json?pretty=true",
+        "httpFormat": "JSON",
+        "httpBasePath": "jobs",
+        "httpValuePath": "name",
+        "httpLabelPath": "name"
+    }],
+    "properties": [],
+    "processes": [],
+    "genericProcesses": [],
+    "teamMappings": []
+}

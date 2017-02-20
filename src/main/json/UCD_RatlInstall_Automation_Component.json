@@ -1,0 +1,394 @@
+{
+    "name": "UCD_RatlInstall_Automation_Component",
+    "description": "",
+    "created": 1469113423371,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "sourceConfigPluginName": "File System",
+    "envPropDefs": [],
+    "resPropDefs": [],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "FileSystemComponentProperties",
+            "properties": [
+                {
+                    "name": "basePath",
+                    "value": "C:\\tmp_unzip_directory\\RLKS_V8.1.4_FOR_WINDOWS_ML\\RLKSSERVER_SETUP",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "extensions",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "namePattern",
+                    "value": "${version}",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "nextNumber",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "useNamePattern",
+                    "value": "false",
+                    "description": "",
+                    "secure": false
+                }
+            ]
+        },
+        {
+            "name": "template",
+            "properties": []
+        },
+        {
+            "name": "custom",
+            "properties": [
+                {
+                    "name": "File_Size",
+                    "value": "500000",
+                    "description": "500 MG",
+                    "secure": false
+                },
+                {
+                    "name": "IMCL_Name",
+                    "value": "imcl.exe",
+                    "description": "Linux name    imcl",
+                    "secure": false
+                },
+                {
+                    "name": "IMCL_Path",
+                    "value": "c:\\Program Files\\IBM\\Installation Manager\\eclipse\\tools",
+                    "description": "Linux location  \/opt\/IBM\/InstallationManager\/eclipse\/tools",
+                    "secure": false
+                },
+                {
+                    "name": "Install_Directory",
+                    "value": "C:\\Program Files (x86)\\IBM\\RationalRLKS",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "PackageID",
+                    "value": "com.ibm.rational.license.key.server",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "Response_File_Name",
+                    "value": "RLKS_V1.4.xml",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "Tmp_Repo_Location",
+                    "value": "C:\\tmp_unzip_directory\\RLKS_V8.1.4_FOR_WINDOWS_ML\\RLKSSERVER_SETUP",
+                    "description": "Location where repository will be downloaded",
+                    "secure": false
+                }
+            ]
+        }
+    ]},
+    "processes": [
+        {
+            "name": "Install-RLKS",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/38118178-b5c9-4886-8d92-ab5ac6b308b1\/processes\/a8f5f3e2-b11c-4a54-b927-28ed21265b1b",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "735de122454ada0a576125bf77f826",
+                        "from": "Check Available Disk Space",
+                        "type": "FAILURE",
+                        "value": ""
+                    },
+                    {
+                        "to": "735de122454ada0a576125bf77f826",
+                        "from": "Clean up Temp Repo Location",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Clean up Temp Repo Location",
+                        "from": "Execute Response File",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Check Available Disk Space",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Echo Properties",
+                        "from": "Check Available Disk Space",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Execute Response File",
+                        "from": "Download Artifacts",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Download Artifacts",
+                        "from": "Echo Properties",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Check Available Disk Space",
+                        "x": -261.5,
+                        "y": 100,
+                        "h": 50,
+                        "w": 420
+                    },
+                    {
+                        "name": "735de122454ada0a576125bf77f826",
+                        "x": -31.5,
+                        "y": 445,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Download Artifacts",
+                        "x": 378.5,
+                        "y": 280,
+                        "h": 50,
+                        "w": 320
+                    },
+                    {
+                        "name": "Echo Properties",
+                        "x": 128.5,
+                        "y": 180,
+                        "h": 50,
+                        "w": 230
+                    },
+                    {
+                        "name": "Clean up Temp Repo Location",
+                        "x": 208.5,
+                        "y": 495,
+                        "h": 50,
+                        "w": 440
+                    },
+                    {
+                        "name": "Execute Response File",
+                        "x": 238.5,
+                        "y": 380,
+                        "h": 50,
+                        "w": 360
+                    }
+                ],
+                "type": "graph",
+                "name": "9ad8c749-0d4c-4d66-acf2-1a6c7caab5f3",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "735de122454ada0a576125bf77f826",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Check Available Disk Space",
+                        "pluginName": "System Information",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "path": "${p:component\/Tmp_Repo_Location}",
+                            "size": "${p:component\/File_Size}"
+                        },
+                        "type": "plugin",
+                        "name": "Check Available Disk Space",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "workingDir": "${p:component\/Tmp_Repo_Location}",
+                        "commandName": "Download Artifacts",
+                        "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+                        "pluginVersion": 26,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "artifactSetBaseDir": "",
+                            "fileIncludePatterns": "**\/*",
+                            "fileExcludePatterns": "",
+                            "syncMode": "true",
+                            "fullVerification": "true",
+                            "setFileExecuteBits": "false",
+                            "verifyFileIntegrity": "false",
+                            "versionId": "${p:version.id}",
+                            "serverUrl": "${p:server.url}",
+                            "compId": "${p:component.id}",
+                            "resId": "${p:resource.id}",
+                            "charset": "",
+                            "label": ""
+                        },
+                        "type": "plugin",
+                        "name": "Download Artifacts",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Execute Response File",
+                        "pluginName": "IBM Installation Manager",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "responseFile": "${p:component\/Tmp_Repo_Location}\/${p:component\/Response_File_Name}",
+                            "dataLocation": "",
+                            "imclLocation": "${p:component\/IMCL_Path}\/${p:component\/IMCL_Name}",
+                            "responseFileVariables": "",
+                            "secureStorageFile": "",
+                            "masterPasswordFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Execute Response File",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Tmp_Repo_Location    ${p:component\/Tmp_Repo_Location}\" \n\necho \"Min Space   ${p:component\/File_Size}\"\n\necho \"Download Working Dir  ${p:component\/Tmp_Repo_Location}\"\n\necho \"Response File Location  ${p:component\/Tmp_Repo_Location}\/${p:component\/Response_File_Name}\" \n\necho \"IMCL Path  ${p:component\/IMCL_Path}  \"\necho \"IMCL Name ${p:component\/IMCL_Name}\"",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Echo Properties",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Delete Files and Directories",
+                        "pluginName": "File Utils",
+                        "pluginVersion": 46,
+                        "properties": {
+                            "baseDir": "${p:component\/Tmp_Repo_Location}",
+                            "includes": "**\/*",
+                            "excludes": "",
+                            "followSymlinks": "false",
+                            "caseSensitive": "true"
+                        },
+                        "type": "plugin",
+                        "name": "Clean up Temp Repo Location",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "uninstall-RLKS-windows",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "REMOVE",
+            "status": "Active",
+            "active": true,
+            "path": "components\/38118178-b5c9-4886-8d92-ab5ac6b308b1\/processes\/12554d9b-259b-4cdf-9a0c-89c9ea0f4cdc",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Run imcl uninstall command",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "dfd3a6538f1b91bdac17c5aa8d6680",
+                        "from": "Run imcl uninstall command",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Run imcl uninstall command",
+                        "x": -131.5,
+                        "y": 140,
+                        "h": 50,
+                        "w": 300
+                    },
+                    {
+                        "name": "dfd3a6538f1b91bdac17c5aa8d6680",
+                        "x": 0,
+                        "y": 310,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "2944ee8e-a207-4aaa-b7da-c623701f4acb",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "dfd3a6538f1b91bdac17c5aa8d6680",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "workingDir": "${p:component\/IMCL_Path}",
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "${p:component\/IMCL_Name} uninstall ${p:component\/PackageID} -installationDirectory \"${p:component\/Install_Directory}\"\n",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Run imcl uninstall command",
+                        "children": []
+                    }
+                ]
+            }
+        }
+    ],
+    "configTemplates": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}

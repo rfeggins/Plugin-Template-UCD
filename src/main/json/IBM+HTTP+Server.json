@@ -1,0 +1,292 @@
+{
+    "name": "IBM HTTP Server",
+    "description": "",
+    "created": 1478019857116,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "envPropDefs": [],
+    "resPropDefs": [],
+    "versionPropDefs": [{
+        "name": "IMRepository",
+        "label": "IM Repository",
+        "pattern": "",
+        "type": "TEXT",
+        "required": true,
+        "description": "",
+        "placeholder": ""
+    }],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "template",
+            "properties": []
+        },
+        {
+            "name": "custom",
+            "properties": []
+        }
+    ]},
+    "processes": [
+        {
+            "name": "Install",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/4b4d16b2-92fd-4b08-91f0-8a7dae30dfbe\/processes\/068bb96c-486c-4cd5-8604-663026221eaf",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "8204b732aabe1b730847f02bf4967a",
+                        "from": "Execute Response File",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Replace Tokens",
+                        "from": "Download Artifacts",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Execute Response File",
+                        "from": "Replace Tokens",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Download Artifacts",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Download Artifacts",
+                        "x": -70,
+                        "y": 100,
+                        "h": 60,
+                        "w": 220
+                    },
+                    {
+                        "name": "Execute Response File",
+                        "x": -75,
+                        "y": 320,
+                        "h": 60,
+                        "w": 230
+                    },
+                    {
+                        "name": "Replace Tokens",
+                        "x": -60,
+                        "y": 210,
+                        "h": 60,
+                        "w": 200
+                    },
+                    {
+                        "name": "8204b732aabe1b730847f02bf4967a",
+                        "x": -5,
+                        "y": 540,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "f064c458-9fe2-4947-bd89-fbebe03ef5bf",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "8204b732aabe1b730847f02bf4967a",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Download Artifacts",
+                        "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+                        "pluginVersion": 26,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "artifactSetBaseDir": "",
+                            "fileIncludePatterns": "**\/*",
+                            "fileExcludePatterns": "",
+                            "syncMode": "true",
+                            "fullVerification": "true",
+                            "setFileExecuteBits": "false",
+                            "verifyFileIntegrity": "false",
+                            "versionId": "${p:version.id}",
+                            "serverUrl": "${p:server.url}",
+                            "compId": "${p:component.id}",
+                            "resId": "${p:resource.id}",
+                            "charset": "",
+                            "label": ""
+                        },
+                        "type": "plugin",
+                        "name": "Download Artifacts",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Execute Response File",
+                        "pluginName": "IBM Installation Manager",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "responseFile": "responseFile.xml",
+                            "dataLocation": "",
+                            "imclLocation": "${p:environment\/InstallationManagerHome}\/eclipse\/tools\/imcl",
+                            "responseFileVariables": "",
+                            "secureStorageFile": "",
+                            "masterPasswordFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Execute Response File",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Replace Tokens",
+                        "pluginName": "File Utils",
+                        "pluginVersion": 46,
+                        "properties": {
+                            "includes": "**\/*",
+                            "excludes": "",
+                            "envPropValues": "${p:environment\/allProperties}",
+                            "propertyPrefix": "",
+                            "explicitTokens": "@IM_REPOSITORY_URL@->${p:version\/IMRepository}\n@VERSION_NAME@->${p:version.name}\n\/opt\/IBM\/IHS85->${p:environment\/IHSInstallPath}\n\/opt\/IBM\/WASPlugin85->${p:environment\/WASPluginInstallPath}",
+                            "startDelimiter": "@",
+                            "endDelimiter": "@",
+                            "propFile": "replace_tokens.properties",
+                            "dir": ""
+                        },
+                        "type": "plugin",
+                        "name": "Replace Tokens",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Uninstall",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "REMOVE",
+            "status": "Active",
+            "active": true,
+            "path": "components\/4b4d16b2-92fd-4b08-91f0-8a7dae30dfbe\/processes\/b8223e1c-4527-4247-8074-fd957b8c423a",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Stop IHS",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Uninstall IHS and WAS Plugin",
+                        "from": "Stop IHS",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "2543d8fd8ee8bac30a1404eae85a35",
+                        "from": "Uninstall IHS and WAS Plugin",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Uninstall IHS and WAS Plugin",
+                        "x": -80,
+                        "y": 231,
+                        "h": 60,
+                        "w": 240
+                    },
+                    {
+                        "name": "Stop IHS",
+                        "x": -30.5,
+                        "y": 120,
+                        "h": 60,
+                        "w": 140
+                    },
+                    {
+                        "name": "2543d8fd8ee8bac30a1404eae85a35",
+                        "x": -5.5,
+                        "y": 355,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "11c3b6f1-055a-44a2-ae4c-415c89846cc7",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "2543d8fd8ee8bac30a1404eae85a35",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "${p:environment\/InstallationManagerHome}\/eclipse\/tools\/imcl uninstall com.ibm.websphere.IHS.v85\n${p:environment\/InstallationManagerHome}\/eclipse\/tools\/imcl uninstall com.ibm.websphere.PLG.v85\n",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Uninstall IHS and WAS Plugin",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "${p:IHSInstallPath}\/bin\/apachectl stop",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Stop IHS",
+                        "children": []
+                    }
+                ]
+            }
+        }
+    ],
+    "configTemplates": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}

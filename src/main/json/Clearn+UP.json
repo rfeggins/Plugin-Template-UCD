@@ -1,0 +1,176 @@
+{
+    "name": "Clearn UP",
+    "description": "",
+    "enforceCompleteSnapshots": false,
+    "propSheet": {"properties": []},
+    "templatePropSheet": {
+        "name": "template",
+        "properties": []
+    },
+    "components": [{
+        "name": "IBM - Agent Clean up Local",
+        "description": "",
+        "created": 1465936300920,
+        "componentType": "STANDARD",
+        "ignoreQualifiers": 0,
+        "importAutomatically": false,
+        "useVfs": false,
+        "active": true,
+        "deleted": false,
+        "defaultVersionType": "FULL",
+        "cleanupDaysToKeep": 0,
+        "cleanupCountToKeep": 0,
+        "envPropDefs": [],
+        "resPropDefs": [],
+        "versionPropDefs": [],
+        "propSheetGroup": {"propSheets": [
+            {
+                "name": "custom",
+                "properties": []
+            },
+            {
+                "name": "template",
+                "properties": []
+            }
+        ]},
+        "processes": [{
+            "name": "Clean up IIM",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": false,
+            "status": "",
+            "active": true,
+            "path": "components\/67828b26-d558-4da8-b629-9d3ab2043884\/processes\/6cc85fdf-50fe-4d25-a7e7-e01cd2e323ba",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Delete Files and Directories rtcp 90002",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "be33aa68935c76d6059c05d69cf99c",
+                        "from": "Delete Files and Directories - rtcp",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "be33aa68935c76d6059c05d69cf99c",
+                        "from": "Delete Files and Directories rtcp 90002",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Delete Files and Directories - rtcp",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Delete Files and Directories rtcp 90002",
+                        "x": 105,
+                        "y": 139,
+                        "h": 60,
+                        "w": 290
+                    },
+                    {
+                        "name": "Delete Files and Directories - rtcp",
+                        "x": -275,
+                        "y": 139,
+                        "h": 60,
+                        "w": 260
+                    },
+                    {
+                        "name": "be33aa68935c76d6059c05d69cf99c",
+                        "x": -5,
+                        "y": 310,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "05dff3e1-22c2-4471-870c-360343f62b1c",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "be33aa68935c76d6059c05d69cf99c",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Delete Files and Directories",
+                        "pluginName": "File Utils",
+                        "pluginVersion": 46,
+                        "properties": {
+                            "baseDir": "\/opt\/ext\/ucd_fs_version\/rtcp\/9.0",
+                            "includes": "**\/*",
+                            "excludes": "",
+                            "followSymlinks": "false",
+                            "caseSensitive": "true"
+                        },
+                        "type": "plugin",
+                        "name": "Delete Files and Directories - rtcp",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Delete Files and Directories",
+                        "pluginName": "File Utils",
+                        "pluginVersion": 46,
+                        "properties": {
+                            "baseDir": "\/opt\/ext\/ucd_fs_version\/rtcp\/9.0.0.2",
+                            "includes": "**\/*",
+                            "excludes": "",
+                            "followSymlinks": "false",
+                            "caseSensitive": "true"
+                        },
+                        "type": "plugin",
+                        "name": "Delete Files and Directories rtcp 90002",
+                        "children": []
+                    }
+                ]
+            }
+        }],
+        "configTemplates": [],
+        "genericProcesses": [],
+        "teamMappings": [],
+        "tags": []
+    }],
+    "environments": [{
+        "name": "Local Environment",
+        "description": "",
+        "color": "#00B2EF",
+        "requireApprovals": false,
+        "exemptProcesses": [],
+        "lockSnapshots": false,
+        "cleanupDaysToKeep": 0,
+        "cleanupCountToKeep": 0,
+        "order": 0,
+        "active": true,
+        "propSheet": {"properties": []},
+        "templatePropSheet": {
+            "name": "template",
+            "properties": []
+        },
+        "baseResources": [],
+        "componentPropSheets": [{
+            "properties": [],
+            "componentName": "IBM - Agent Clean up Local"
+        }],
+        "versionConditions": [],
+        "teamMappings": []
+    }],
+    "statuses": [],
+    "processes": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}

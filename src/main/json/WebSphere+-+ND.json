@@ -1,0 +1,210 @@
+{
+    "name": "WebSphere - ND",
+    "description": "",
+    "created": 1478019857582,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "envPropDefs": [],
+    "resPropDefs": [],
+    "versionPropDefs": [
+        {
+            "name": "IMRepository",
+            "label": "IM Repository",
+            "pattern": "",
+            "type": "TEXT",
+            "required": false,
+            "description": "Location of the Installation Manager repository where WAS ND is stored (this may be in the format C:\\installation_files\\repository.config or http:\/\/hostname:8081)",
+            "placeholder": ""
+        },
+        {
+            "name": "VersionName",
+            "label": "Version Name",
+            "pattern": "",
+            "type": "TEXT",
+            "required": false,
+            "description": "Version of WAS ND to install as described in the source repository (for example, com.ibm.websphere.ND.v85_8.5.5000.20130514_1044)",
+            "placeholder": ""
+        }
+    ],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "template",
+            "properties": []
+        },
+        {
+            "name": "custom",
+            "properties": []
+        }
+    ]},
+    "processes": [
+        {
+            "name": "Install",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/e467b99a-a084-46e3-8fdd-2014ab813067\/processes\/36526129-7350-45c0-aff0-e203c2242482",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Check Version Type",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Install WebSphere Application Server ND",
+                        "from": "Check Version Type",
+                        "type": "VALUE",
+                        "value": "full"
+                    },
+                    {
+                        "to": "8d48d9e352053905fe2a17e22af253",
+                        "from": "Install WebSphere Application Server ND",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Install WebSphere Application Server ND",
+                        "x": -115,
+                        "y": 180,
+                        "h": 60,
+                        "w": 310
+                    },
+                    {
+                        "name": "Check Version Type",
+                        "x": -55,
+                        "y": 90,
+                        "h": 60,
+                        "w": 190
+                    },
+                    {
+                        "name": "8d48d9e352053905fe2a17e22af253",
+                        "x": -5,
+                        "y": 420,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "be575cde-4aeb-4c09-a857-39aeae125e82",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "8d48d9e352053905fe2a17e22af253",
+                        "children": []
+                    },
+                    {
+                        "propertyName": "version.type",
+                        "type": "switch",
+                        "name": "Check Version Type",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Install WebSphere Application Server",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WASInstallPath}",
+                            "IMInstallPath": "${p:environment\/InstallationManagerHome}",
+                            "IMRepository": "${p:version\/IMRepository}",
+                            "IMShared": "${p?:environment\/IMShared}",
+                            "VersionName": "${p:version\/VersionName}"
+                        },
+                        "type": "plugin",
+                        "name": "Install WebSphere Application Server ND",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Uninstall",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "REMOVE",
+            "status": "Active",
+            "active": true,
+            "path": "components\/e467b99a-a084-46e3-8fdd-2014ab813067\/processes\/26193e26-d386-47a1-9f7b-3dcccf5a8be7",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "cd5bb105eefe6006868371274031e6",
+                        "from": "Uninstall WebSphere Application Server",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Uninstall WebSphere Application Server",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Uninstall WebSphere Application Server",
+                        "x": -120,
+                        "y": 160,
+                        "h": 60,
+                        "w": 320
+                    },
+                    {
+                        "name": "cd5bb105eefe6006868371274031e6",
+                        "x": -5,
+                        "y": 330,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "ebb5f6c3-d376-422d-ba03-22e9ce379d2f",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "cd5bb105eefe6006868371274031e6",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Uninstall WebSphere Application Server",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WASInstallPath}",
+                            "IMInstallPath": "${p:environment\/InstallationManagerHome}",
+                            "VersionName": "${p:version\/VersionName}"
+                        },
+                        "type": "plugin",
+                        "name": "Uninstall WebSphere Application Server",
+                        "children": []
+                    }
+                ]
+            }
+        }
+    ],
+    "configTemplates": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}

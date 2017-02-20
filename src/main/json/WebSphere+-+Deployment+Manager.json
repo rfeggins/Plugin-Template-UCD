@@ -1,0 +1,429 @@
+{
+    "name": "WebSphere - Deployment Manager",
+    "description": "",
+    "created": 1478019857394,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "envPropDefs": [],
+    "resPropDefs": [],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "custom",
+            "properties": [
+                {
+                    "name": "ProfileTemplatePath",
+                    "value": "${p:environment\/WASInstallPath}\/profileTemplates\/dmgr",
+                    "description": "Path to the template of the profile that will be created",
+                    "secure": false
+                },
+                {
+                    "name": "WASDmgrPort",
+                    "value": "8879",
+                    "description": "Port of the deployment manager",
+                    "secure": false
+                },
+                {
+                    "name": "WASProfileName",
+                    "value": "Dmgr01",
+                    "description": "Name of the new profile to create",
+                    "secure": false
+                },
+                {
+                    "name": "WASProfilePath",
+                    "value": "${p:environment\/WASInstallPath}\/profiles\/Dmgr01",
+                    "description": "Directory to place the new profile in",
+                    "secure": false
+                }
+            ]
+        },
+        {
+            "name": "template",
+            "properties": []
+        }
+    ]},
+    "processes": [
+        {
+            "name": "Install",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Installed",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/b4998847-8f83-468a-ba68-28a3d7f2d62f\/processes\/9b0a00cf-763c-46ec-9064-f52724d01605",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Create Deployment Manager Profile",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Create resource data file",
+                        "from": "Create Deployment Manager Profile",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Create resource",
+                        "from": "Create resource data file",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "8d48d9e352053905fe2a17e22af253",
+                        "from": "Create resource",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "8d48d9e352053905fe2a17e22af253",
+                        "x": -5,
+                        "y": 450,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Create Deployment Manager Profile",
+                        "x": -110,
+                        "y": 90,
+                        "h": 60,
+                        "w": 300
+                    },
+                    {
+                        "name": "Create resource data file",
+                        "x": -65,
+                        "y": 230,
+                        "h": 60,
+                        "w": 210
+                    },
+                    {
+                        "name": "Create resource",
+                        "x": -40,
+                        "y": 330,
+                        "h": 60,
+                        "w": 160
+                    }
+                ],
+                "type": "graph",
+                "name": "9ee576af-e185-4937-9914-bc53f55ae1fb",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "8d48d9e352053905fe2a17e22af253",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Run Groovy Script",
+                        "pluginName": "Groovy",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "groovyHome": "${GROOVY_HOME}",
+                            "scriptBody": "import groovy.json.JsonBuilder \n\ndef resourcePath = '''${p:resource.path}'''\ndef lastSlashIndex = resourcePath.lastIndexOf(\"\/\")\ndef parentResourcePath = resourcePath.substring(0, lastSlashIndex)\n\nprintln parentResourcePath\n\ndef json = new JsonBuilder()\ndef resourceJson = json {\n    name '''${p:component\/WASProfileName}'''\n    parent parentResourcePath\n    role 'WebSphereCell'\n    roleProperties json {\n        'websphere.cell' '''${p:component\/WASProfileName}'''\n        'websphere.commandPath' '''${p:environment\/WASInstallPath}\/bin'''\n        'websphere.connType' 'SOAP'\n        'websphere.host' 'localhost'\n        'websphere.password' '''${p:environment\/WASAdminPassword}'''\n        'websphere.port' '''${p:component\/WASDmgrPort}'''\n        'websphere.profilePath' '''${p:component\/WASProfilePath}'''\n        'websphere.user' '''${p:environment\/WASAdminUsername}'''\n    }\n}\n\nnew File(\"createResourceInput\").setText(json.toString())\n"
+                        },
+                        "type": "plugin",
+                        "name": "Create resource data file",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "chmod +x $AGENT_HOME\/opt\/udclient\/udclient\nudclient --authtoken $DS_AUTH_TOKEN --weburl $AH_WEB_URL createResource createResourceInput",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Create resource",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Create Deployment Manager Profile",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WASInstallPath}",
+                            "WASProfilePath": "${p:component\/WASProfilePath}",
+                            "WASProfileName": "${p:component\/WASProfileName}",
+                            "ProfileTemplatePath": "${p:component\/ProfileTemplatePath}",
+                            "WASAdminUsername": "${p:environment\/WASAdminUsername}",
+                            "WASAdminPassword": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|R6vjLindV7JLnxJUBbtgfw==|Gvp+lrBVu31ITlFOmI8bYIkFLkPsby3EkVVFRjXY5yEECOeSEhz2CUjBUFYaaWkB}",
+                            "WASCellName": "${p?:environment\/WASCellName}",
+                            "WASNodeName": "${p?:environment\/WASNodeName}",
+                            "WASHostName": "${p?:environment\/WASHostName}",
+                            "WASPortsFile": "${p?:environment\/WASPortsFile}"
+                        },
+                        "type": "plugin",
+                        "name": "Create Deployment Manager Profile",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Start",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/b4998847-8f83-468a-ba68-28a3d7f2d62f\/processes\/ce152e81-5bdc-4e81-94d8-5ecfbe996309",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "62b21da37d9708889fa42ea3cf1dbf",
+                        "from": "Start Deployment Manager",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Start Deployment Manager",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "62b21da37d9708889fa42ea3cf1dbf",
+                        "x": -5,
+                        "y": 210,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Start Deployment Manager",
+                        "x": -85,
+                        "y": 93,
+                        "h": 60,
+                        "w": 250
+                    }
+                ],
+                "type": "graph",
+                "name": "15300465-de74-4a6d-a740-c2875da6968d",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "62b21da37d9708889fa42ea3cf1dbf",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Start Deployment Manager",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WASInstallPath}",
+                            "WASProfileName": "${p:component\/WASProfileName}",
+                            "WASAdminUsername": "${p:environment\/WASAdminUsername}",
+                            "WASAdminPassword": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|w1PXlXBch2JSGr3BmRGJZw==|sIV1Z7yR+qtBHVnBjrTsugVR9CGXL5\/Ggyb0B2r2CwPdpXb+bB0JLtLdCiaLjnzK}"
+                        },
+                        "type": "plugin",
+                        "name": "Start Deployment Manager",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Stop",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "REMOVE",
+            "status": "Active",
+            "active": true,
+            "path": "components\/b4998847-8f83-468a-ba68-28a3d7f2d62f\/processes\/3ecef39f-c8f1-49cc-aed6-17ed2306c00c",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "5cbe9854d9aa376d1ba963045d2db5",
+                        "from": "Stop Deployment Manager",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Stop Deployment Manager",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Stop Deployment Manager",
+                        "x": -85,
+                        "y": 100,
+                        "h": 60,
+                        "w": 250
+                    },
+                    {
+                        "name": "5cbe9854d9aa376d1ba963045d2db5",
+                        "x": -5,
+                        "y": 210,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "bf60aef7-a179-4c1c-beeb-aebd07f95fea",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "5cbe9854d9aa376d1ba963045d2db5",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Stop Deployment Manager",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WASInstallPath}",
+                            "WASProfileName": "${p:component\/WASProfileName}",
+                            "WASAdminUsername": "${p:environment\/WASAdminUsername}",
+                            "WASAdminPassword": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|jn7FjT2J1u5TGa3aDwgQEQ==|rQACsdndLvESPC+ean70pmfwGnFWYkdNPp1BGoK7lRxVOVVw0uHfj2m5C1O0drOf}"
+                        },
+                        "type": "plugin",
+                        "name": "Stop Deployment Manager",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Uninstall",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "REMOVE",
+            "status": "Installed",
+            "active": true,
+            "path": "components\/b4998847-8f83-468a-ba68-28a3d7f2d62f\/processes\/a20f9780-c13b-4243-b707-7fe0a1dd516a",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Delete Cell Resource",
+                        "from": "Remove Deployment Manager Profile",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "cd5bb105eefe6006868371274031e6",
+                        "from": "Delete Cell Resource",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Remove Deployment Manager Profile",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "cd5bb105eefe6006868371274031e6",
+                        "x": -5,
+                        "y": 380,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Remove Deployment Manager Profile",
+                        "x": -115,
+                        "y": 87,
+                        "h": 60,
+                        "w": 310
+                    },
+                    {
+                        "name": "Delete Cell Resource",
+                        "x": -65,
+                        "y": 240,
+                        "h": 60,
+                        "w": 210
+                    }
+                ],
+                "type": "graph",
+                "name": "33863991-55a1-4547-b6b7-80756ee22448",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "cd5bb105eefe6006868371274031e6",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Remove Deployment Manager Profile",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WASInstallPath}",
+                            "WASProfilePath": "${p:component\/WASProfilePath}",
+                            "WASProfileName": "${p:component\/WASProfileName}",
+                            "deleteProfileDir": "true"
+                        },
+                        "type": "plugin",
+                        "name": "Remove Deployment Manager Profile",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Delete Resource",
+                        "pluginName": "IBM UrbanCode Deploy Resources",
+                        "pluginVersion": 68,
+                        "properties": {"resource": "${p:resource.parent.path}\/${p:component\/WASProfileName}"},
+                        "type": "plugin",
+                        "name": "Delete Cell Resource",
+                        "children": []
+                    }
+                ]
+            }
+        }
+    ],
+    "configTemplates": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}

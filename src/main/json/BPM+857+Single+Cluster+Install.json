@@ -1,0 +1,674 @@
+{
+    "name": "BPM 857 Single Cluster Install",
+    "description": "C:\\IBM\\Software\\BPM_Adv_Windows",
+    "created": 1477960292313,
+    "componentType": "STANDARD",
+    "ignoreQualifiers": 0,
+    "importAutomatically": false,
+    "useVfs": true,
+    "active": true,
+    "deleted": false,
+    "defaultVersionType": "FULL",
+    "cleanupDaysToKeep": 0,
+    "cleanupCountToKeep": 0,
+    "sourceConfigPluginName": "File System (Versioned)",
+    "envPropDefs": [
+        {
+            "name": "WAS_INSTALL_PATH",
+            "label": "WAS_INSTALL_PATH",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "C:\\IBM\\BPMPSV85\\WebSphere\\AppServer",
+            "required": false,
+            "description": "",
+            "placeholder": ""
+        },
+        {
+            "name": "WAS_DMGR_PROFILE_NAME",
+            "label": "WAS_DMGR_PROFILE_NAME",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "DmgrProfile",
+            "required": false,
+            "description": "",
+            "placeholder": ""
+        },
+        {
+            "name": "WAS_CELL_ADMIN",
+            "label": "WAS_CELL_ADMIN",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "ceadmin",
+            "required": false,
+            "description": "",
+            "placeholder": ""
+        },
+        {
+            "name": "WAS_CELL_ADMN_PASSWORD",
+            "label": "WAS_CELL_ADMN_PASSWORD",
+            "pattern": "",
+            "type": "SECURE",
+            "value": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|JX7FRw287mvMPfHjxtelqw==|Qpw4NyMRcE1eq1u9QxfUQg==}",
+            "required": false,
+            "description": "",
+            "placeholder": ""
+        },
+        {
+            "name": "WAS_NODE_PROFILE_NAME",
+            "label": "WAS_NODE_PROFILE_NAME",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "PSNode01",
+            "required": false,
+            "description": "",
+            "placeholder": ""
+        },
+        {
+            "name": "PSNODE_CLUSTER_MEMBER_NAME",
+            "label": "PSNODE_CLUSTER_MEMBER_NAME",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "PSSingleClusterM01",
+            "required": false,
+            "description": "",
+            "placeholder": ""
+        },
+        {
+            "name": "WAS_NODE_BIN_PATH",
+            "label": "WAS_NODE_BIN_PATH",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "\\IBM\\BPMPSV85\\WebSphere\\AppServer\\profiles\\PSNode01\\bin",
+            "required": false,
+            "description": "",
+            "placeholder": ""
+        }
+    ],
+    "resPropDefs": [
+        {
+            "name": "IMCL_Location",
+            "label": "IMCL_Location",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "\"C:\\IBM\\Installation Manager\\eclipse\\tools\\imcl.exe\"",
+            "required": false,
+            "description": "IBM Installation Manager Command Line Interface Location"
+        },
+        {
+            "name": "IMCL_Directory",
+            "label": "IMCL_Directory",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "\"C:\\IBM\\Installation Manager\\eclipse\\tools\"",
+            "required": false,
+            "description": "Installation Manager CLI directory"
+        },
+        {
+            "name": "BPM_Install_Dir",
+            "label": "BPM_Install_Dir",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "C:\\IBM\\BPMPSV85\\WebSphere\\AppServer",
+            "required": false,
+            "description": "BPM Install Direcotry"
+        },
+        {
+            "name": "BPM_Install_Parent_dir",
+            "label": "BPM_Install_Parent_dir",
+            "pattern": "",
+            "type": "TEXT",
+            "value": "C:\\IBM\\BPMPSV85",
+            "required": false,
+            "description": ""
+        }
+    ],
+    "versionPropDefs": [],
+    "propSheetGroup": {"propSheets": [
+        {
+            "name": "FileSystemVersionedComponentProperties",
+            "properties": [
+                {
+                    "name": "basePath",
+                    "value": "C:\\IBM\\Software\\response_files",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "extensions",
+                    "description": "",
+                    "secure": false
+                },
+                {
+                    "name": "saveFileExecuteBits",
+                    "value": "false",
+                    "description": "",
+                    "secure": false
+                }
+            ]
+        },
+        {
+            "name": "template",
+            "properties": []
+        },
+        {
+            "name": "custom",
+            "properties": [{
+                "name": "response_file_location",
+                "value": "ps_single_cluster.xml",
+                "description": "",
+                "secure": false
+            }]
+        }
+    ]},
+    "processes": [
+        {
+            "name": "Install_ProcessServer_Single_Cluster",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/7551e302-7fae-44ba-89a0-387334bc01df\/processes\/a2c020e0-6e03-4589-9d75-4e955aba40d3",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Configure Single Cluster Deployment Environment",
+                        "from": "Install BPM Binary",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Not Enough Diskspace",
+                        "from": "Check Available Disk Space",
+                        "type": "FAILURE",
+                        "value": ""
+                    },
+                    {
+                        "to": "Check Available Disk Space",
+                        "from": "Cleanup Working Directory",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Install BPM Binary",
+                        "from": "Display Properties",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Cleanup Working Directory",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "from": "Configure Single Cluster Deployment Environment",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "from": "Not Enough Diskspace",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Display Properties",
+                        "from": "Download Artifacts",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Download Artifacts",
+                        "from": "Check Available Disk Space",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Check Available Disk Space",
+                        "x": -90,
+                        "y": 161,
+                        "h": 60,
+                        "w": 260
+                    },
+                    {
+                        "name": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "x": -219,
+                        "y": 605,
+                        "h": 50,
+                        "w": 90
+                    },
+                    {
+                        "name": "Download Artifacts",
+                        "x": 182.5,
+                        "y": 240,
+                        "h": 60,
+                        "w": 220
+                    },
+                    {
+                        "name": "Not Enough Diskspace",
+                        "x": -229,
+                        "y": 330,
+                        "h": 60,
+                        "w": 200
+                    },
+                    {
+                        "name": "Cleanup Working Directory",
+                        "x": -70,
+                        "y": 80,
+                        "h": 60,
+                        "w": 220
+                    },
+                    {
+                        "name": "Display Properties",
+                        "x": 211,
+                        "y": 320,
+                        "h": 60,
+                        "w": 170
+                    },
+                    {
+                        "name": "Install BPM Binary",
+                        "x": 182.5,
+                        "y": 400,
+                        "h": 60,
+                        "w": 230
+                    },
+                    {
+                        "name": "Configure Single Cluster Deployment Environment",
+                        "x": 122.5,
+                        "y": 490,
+                        "h": 60,
+                        "w": 350
+                    }
+                ],
+                "type": "graph",
+                "name": "a4d669c9-3904-4e6c-96c7-58b282f8e9bd",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "fe92512ec8f0250e6b28182dcd8e5e",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Download Artifacts",
+                        "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+                        "pluginVersion": 26,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "artifactSetBaseDir": "",
+                            "fileIncludePatterns": "**\/*",
+                            "fileExcludePatterns": "",
+                            "syncMode": "true",
+                            "fullVerification": "true",
+                            "setFileExecuteBits": "false",
+                            "verifyFileIntegrity": "false",
+                            "versionId": "${p:version.id}",
+                            "serverUrl": "${p:server.url}",
+                            "compId": "${p:component.id}",
+                            "resId": "${p:resource.id}",
+                            "charset": "",
+                            "label": ""
+                        },
+                        "type": "plugin",
+                        "name": "Download Artifacts",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Execute Response File",
+                        "pluginName": "IBM Installation Manager",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "responseFile": "${p:component\/response_file_location}",
+                            "dataLocation": "",
+                            "imclLocation": "c:\\IBM\\Installation Manager\\eclipse\\tools\\imcl.exe",
+                            "responseFileVariables": "",
+                            "secureStorageFile": "",
+                            "masterPasswordFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Install BPM Binary",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "dir\necho \"${p:resource\/work.dir}\/${p:component.name}\"\necho \"${p:component\/custom\/response_file_location}\"\necho '${p:resource\/BPM 857 Install or Uninstall\/IMCL_Location}",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Display Properties",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Cleaning up Working Directory\"\ndir\ndel \/S \/Q *.*",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Cleanup Working Directory",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Check Available Disk Space",
+                        "pluginName": "System Information",
+                        "pluginVersion": 3,
+                        "properties": {
+                            "path": "C:\\",
+                            "size": "3000000"
+                        },
+                        "type": "plugin",
+                        "name": "Check Available Disk Space",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Not Enough Diskspace\"",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Not Enough Diskspace",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "cd ${p:resource\/BPM 857 Single Cluster Install\/BPM_Install_Dir}\ncd bin\nBPMConfig.bat -create -de C:\\IBM\\Software\\DE_Property_Files\\Advanced-PS-SingleCluster-DB2.properties",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Configure Single Cluster Deployment Environment",
+                        "children": []
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Start Server",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/7551e302-7fae-44ba-89a0-387334bc01df\/processes\/6ea4c5e3-cc80-4674-a5aa-3924351596fb",
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Start Deployment Manager",
+                        "from": "Starting Deployment Manager",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Starting Node Agent",
+                        "from": "Start Deployment Manager",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "26b81ca2b7435278f2e0fc274ca276",
+                        "from": "Start Cluster Member",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Start Cluster Member",
+                        "from": "Starting Cluster Member",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Starting Deployment Manager",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Starting Cluster Member",
+                        "from": "Start Node Agent",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Start Node Agent",
+                        "from": "Starting Node Agent",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Start Cluster Member",
+                        "x": 220,
+                        "y": 260,
+                        "h": 60,
+                        "w": 190
+                    },
+                    {
+                        "name": "Start Deployment Manager",
+                        "x": 150,
+                        "y": 80,
+                        "h": 60,
+                        "w": 250
+                    },
+                    {
+                        "name": "Starting Node Agent",
+                        "x": -330,
+                        "y": 170,
+                        "h": 60,
+                        "w": 190
+                    },
+                    {
+                        "name": "Start Node Agent",
+                        "x": 230,
+                        "y": 180,
+                        "h": 60,
+                        "w": 170
+                    },
+                    {
+                        "name": "Starting Deployment Manager",
+                        "x": -340,
+                        "y": 70,
+                        "h": 60,
+                        "w": 240
+                    },
+                    {
+                        "name": "Starting Cluster Member",
+                        "x": -330,
+                        "y": 260,
+                        "h": 60,
+                        "w": 210
+                    },
+                    {
+                        "name": "26b81ca2b7435278f2e0fc274ca276",
+                        "x": 10,
+                        "y": 410,
+                        "h": 50,
+                        "w": 90
+                    }
+                ],
+                "type": "graph",
+                "name": "e295b67c-9944-4d7f-816a-86c5ac05cd07",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "26b81ca2b7435278f2e0fc274ca276",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Start Deployment Manager",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WAS_INSTALL_PATH}",
+                            "WASProfileName": "${p:environment\/WAS_DMGR_PROFILE_NAME}",
+                            "WASAdminUsername": "${p:environment\/WAS_CELL_ADMIN}",
+                            "WASAdminPassword": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|zQ6H8D+n2XHT64Q71vX4BQ==|ZlCe9JrWWGMDLD7HDQraZQ==}"
+                        },
+                        "type": "plugin",
+                        "name": "Start Deployment Manager",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Start Node",
+                        "pluginName": "WAS - Install",
+                        "pluginVersion": 4,
+                        "properties": {
+                            "WASInstallPath": "${p:environment\/WAS_INSTALL_PATH}",
+                            "WASAdminUsername": "${p:environment\/WAS_CELL_ADMIN}",
+                            "WASAdminPassword": "crypt_v1{AES\/CBC\/PKCS5Padding|aes128keyu338|8LBQQgGLabYIs1ydnfM7UQ==|gCOgt41I+n2F36Cp0\/IPyQ==}",
+                            "WASProfileName": "${p:environment\/WAS_NODE_PROFILE_NAME}"
+                        },
+                        "type": "plugin",
+                        "name": "Start Node Agent",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "\ncd ${p:environment\/WAS_NODE_BIN_PATH}\nstartserver ${p:environment\/PSNODE_CLUSTER_MEMBER_NAME}",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Start Cluster Member",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Starting Deployment Manager\"",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Starting Deployment Manager",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Starting Node Agent\"",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Starting Node Agent",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "pluginVersion": 6,
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "echo \"Starting Cluster Member\"",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "type": "plugin",
+                        "name": "Starting Cluster Member",
+                        "children": []
+                    }
+                ]
+            }
+        }
+    ],
+    "configTemplates": [],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}
